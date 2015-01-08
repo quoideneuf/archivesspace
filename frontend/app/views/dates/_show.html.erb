@@ -10,14 +10,14 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <div class="row-fluid collapsed accordion-toggle" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_date_<%= index %>">
-            <div class="span1">
+            <div class="col-md-1">
               <span class="icon-chevron-right"></span>
               <span class="icon-chevron-down"></span>
             </div>
-            <div class="span2">
+            <div class="col-md-2">
               <%= I18n.t("enumerations.date_label.#{date['label']}", :default => date['label']) %>
             </div>
-            <div class="span6">
+            <div class="col-md-6">
               <!--https://www.pivotaltracker.com/story/show/41527633 -->
               <% if date['expression'] %>
                 <%= date['expression']%>
@@ -27,7 +27,7 @@
                 <%= date['begin'] %> &ndash; <%= date['end'] %>
               <% end %>
             </div>
-            <div class="span3">
+            <div class="col-md-3">
               <% if date['certainty']%><%= I18n.t("enumerations.date_certainty.#{date['certainty']}", :default => date['certainty']) %><% end %>
             </div>
           </div>

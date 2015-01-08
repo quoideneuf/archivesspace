@@ -3,10 +3,10 @@
 <%= render_aspace_partial :partial => "jobs/show_templates" %>
 
 <div class="row-fluid job-status-<%= @job.status %>">
-  <div class="span3">
+  <div class="col-md-3">
     <%= render_aspace_partial :partial => "sidebar" %>
   </div>
-  <div class="span9">
+  <div class="col-md-9">
     <%= render_aspace_partial :partial => "toolbar" %>
     <div class="record-pane">
       <%= readonly_context :job, @job do |readonly| %>

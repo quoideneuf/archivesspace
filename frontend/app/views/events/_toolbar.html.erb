@@ -1,6 +1,6 @@
 <% if user_can?('delete_event_record') %>
   <div class="row-fluid">
-    <div class="span12">
+    <div class="col-md-12">
       <div class="record-toolbar">
         <% if not @event.suppressed %>
           <% if !['edit', 'update'].include?(controller.action_name) %>

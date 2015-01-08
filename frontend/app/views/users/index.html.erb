@@ -1,11 +1,11 @@
 <%= setup_context :title => @manage_access ? I18n.t("user._frontend.section.manage_access") : I18n.t("user._plural") %>
 
 <div class="row-fluid">
-   <div class="span3"></div>
-   <div class="span9">
+   <div class="col-md-3"></div>
+   <div class="col-md-9">
      <% if not @manage_access %>
        <div class="row-fluid">
-         <div class="span12">
+         <div class="col-md-12">
            <div class="record-toolbar">
              <div class="btn-group pull-right">
                <%= link_to I18n.t("user._frontend.action.create"), {:controller => :users, :action => :new}, :class => "btn btn-small" %>

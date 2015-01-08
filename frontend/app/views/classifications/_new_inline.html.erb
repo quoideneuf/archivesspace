@@ -1,10 +1,10 @@
 <%= form_for @classification, :as => "classification", :url => {:action => :create}, :html => {:class => 'form-horizontal aspace-record-form', :id => "classification_form"} do |f| %>
   <%= form_context :classification, @classification do |form| %>
     <div class="row-fluid">
-      <div class="span3">
+      <div class="col-md-3">
         <%= render_aspace_partial :partial => "classifications/sidebar" %>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <div class="record-pane">
           <%= render_aspace_partial :partial => "classifications/form_container", :locals => {:form => form} %>
           <div class="form-actions">

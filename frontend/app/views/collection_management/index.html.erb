@@ -6,10 +6,10 @@ add_column(I18n.t("collection_management.processing_status"), proc {|record| I18
 add_column(I18n.t("collection_management.processing_hours_total_short"), proc {|record| record['processing_hours_total']}, :sortable => true, :sort_by => "processing_hours_total")
 %>
 <div class="row-fluid">
-  <div class="span3">
+  <div class="col-md-3">
     <%= render_aspace_partial :partial => "search/filter" %>
   </div>
-  <div class="span9">
+  <div class="col-md-9">
     <div class="record-pane">
       <%= link_to_help :topic => "search" %>
 

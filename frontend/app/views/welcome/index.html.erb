@@ -3,7 +3,7 @@
 <div class="row-fluid">
    <%= render_aspace_partial :partial => "shared/flash_messages" %>
 
-   <div class="span12">
+   <div class="col-md-12">
       <h1><%= I18n.t "welcome.heading" %></h1>
       <% if session["user"] %>
         <p><%= I18n.t "welcome.message_logged_in" %></p>

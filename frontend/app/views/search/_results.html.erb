@@ -3,10 +3,10 @@
 %>
 
 <div class="row-fluid">
-  <div class="span3">
+  <div class="col-md-3">
     <%= render_aspace_partial :partial => "search/filter" %>
   </div>
-  <div class="span9">
+  <div class="col-md-9">
     <div class="record-pane">
       <%= link_to_help :topic => "search" %>
       <% if !params[:linker] %>

@@ -1,10 +1,10 @@
 <%= setup_context :object => @agent, :controller => :agents, :agent_type => @agent.agent_type, :title => @agent.title %>
 
 <div class="row-fluid">
-   <div class="span3">
+   <div class="col-md-3">
       <%= render_aspace_partial :partial => "agents/sidebar" %>
    </div>
-   <div class="span9">
+   <div class="col-md-9">
     <%= render_aspace_partial :partial => "toolbar" %>
     <div class="record-pane">
      <%= readonly_context @agent.agent_type.intern, @agent do |readonly| %>
@@ -37,14 +37,14 @@
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <div class="row-fluid accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_name_accordion" href="#agent_name_<%= index %>">
-                      <div class="span1">
+                      <div class="col-md-1">
                         <span class="icon-chevron-right"></span>
                         <span class="icon-chevron-down"></span>
                       </div>
-                      <div class="span6">
+                      <div class="col-md-6">
                         <%= name['sort_name'] %>
                       </div>
-                      <div class="span4">
+                      <div class="col-md-4">
                         <% if name['authorized'] %><span class="badge badge-info"><%= I18n.t("name_person.authorized") %></span><% end %>
                         <% if name['is_display_name'] %><span class="badge badge-info"><%= I18n.t("name_person.is_display_name") %></span><% end %>
                       </div>
@@ -73,11 +73,11 @@
                   <div class="accordion-group">
                     <div class="accordion-heading">
                       <div class="row-fluid accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_contact_accordion" href="#agent_contact_<%= index %>">
-                        <div class="span1">
+                        <div class="col-md-1">
                           <span class="icon-chevron-right"></span>
                           <span class="icon-chevron-down"></span>
                         </div>
-                        <div class="span7">
+                        <div class="col-md-7">
                           <%= contact['name'] %>
                         </div>
                       </div>

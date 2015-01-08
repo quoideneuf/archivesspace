@@ -5,13 +5,13 @@
 %>
 
 <div class="row-fluid">
-   <div class="span3">
+   <div class="col-md-3">
      <%= render_aspace_partial :partial => "search/filter" %>
    </div>
-   <div class="span9">
+   <div class="col-md-9">
      <% if user_can?('update_classification_record') %>
        <div class="row-fluid">
-         <div class="span12">
+         <div class="col-md-12">
            <div class="record-toolbar">
              <div class="pull-right">
                <%= link_to I18n.t("classification._frontend.action.create"), {:controller => :classifications, :action => :new}, :class => "btn btn-small" %>

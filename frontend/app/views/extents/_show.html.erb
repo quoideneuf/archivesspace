@@ -9,15 +9,15 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <div class="row-fluid accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_extent_<%= index %>">
-            <div class="span1">
+            <div class="col-md-1">
               <span class="icon-chevron-right"></span>
               <span class="icon-chevron-down"></span>
             </div>
-            <div class="span4">
+            <div class="col-md-4">
               <%= extent['number'] %> 
               <%= I18n.t('enumerations.extent_extent_type.'+extent['extent_type'], :default => extent['extent_type']) %>
             </div>
-            <div class="span7">
+            <div class="col-md-7">
               <%= extent['container_summary'] %>
             </div>
           </div>

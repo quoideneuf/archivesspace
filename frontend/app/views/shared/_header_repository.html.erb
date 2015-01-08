@@ -87,7 +87,7 @@
             <li>
               <%= form_tag(url_for(:controller => :search, :action => :do_search), :method => :get, :class => "navbar-form pull-left") do %>
                 <div class="input-append">
-                  <input id="global-search-box" type="text" class="span2" placeholder="<%= I18n.t("navbar.search_placeholder") %>" name="q" value="<%= params[:q] %>"/>
+                  <input id="global-search-box" type="text" class="col-md-2" placeholder="<%= I18n.t("navbar.search_placeholder") %>" name="q" value="<%= params[:q] %>"/>
                   <button id="global-search-button" class="btn" title="<%= I18n.t("navbar.search_button_title") %>"><span class=" icon-search"></span></button>
                   <button class="btn search-switcher last" title="<%= I18n.t("navbar.show_advanced_search_button_title") %>" <% if params["advanced"] %>style="display:none"<% end %>><span class='icon-chevron-down'></span></button>
                   <button class="btn search-switcher last" title="<%= I18n.t("navbar.hide_advanced_search_button_title") %>" <% if !params["advanced"] %>style="display:none"<% end %>><span class='icon-chevron-up'></span></button>
