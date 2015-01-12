@@ -9,10 +9,10 @@
     <% dates.each_with_index do | date, index | %>
       <div class="accordion-group">
         <div class="accordion-heading">
-          <div class="row-fluid collapsed accordion-toggle" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_date_<%= index %>">
+          <div class="row collapsed accordion-toggle" data-toggle="collapse" data-parent="#<%= section_id %>_accordion" href="#<%= section_id %>_date_<%= index %>">
             <div class="col-md-1">
-              <span class="icon-chevron-right"></span>
-              <span class="icon-chevron-down"></span>
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="glyphicon glyphicon-chevron-down"></span>
             </div>
             <div class="col-md-2">
               <%= I18n.t("enumerations.date_label.#{date['label']}", :default => date['label']) %>

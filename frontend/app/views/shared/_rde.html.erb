@@ -23,24 +23,24 @@
 
         <p>
         <div class="btn-group">
-          <button class="btn btn-small btn-success add-row"><%= I18n.t("rde.actions.add_row") %></button>
-          <button class="btn btn-small btn-success dropdown-toggle add-rows-dropdown" data-toggle="dropdown">
+          <button class="btn btn-sml btn-success add-row"><%= I18n.t("rde.actions.add_row") %></button>
+          <button class="btn btn-sml btn-success dropdown-toggle add-rows-dropdown" data-toggle="dropdown">
             <span class="caret"></span>
           </button>
           <div class="dropdown-menu add-rows-form">
             <div><input type="number" class="input-medium" value="1" /></div>
-            <button class="btn btn-small input-medium btn-primary" type="button"><%= I18n.t("rde.actions.add_rows") %></button>
+            <button class="btn btn-sml input-medium btn-primary" type="button"><%= I18n.t("rde.actions.add_rows") %></button>
           </div>
         </div>
         <select id="rde_hidden_columns" multiple="multiple" data-i18n-prefix="<%= I18n.t("rde.actions.showhide_prefix") %>" data-i18n-suffix="<%= I18n.t("rde.actions.showhide_suffix") %>" data-i18n-none="<%= I18n.t("rde.actions.showhide_none") %>"></select>
         <div class="btn-group">
-          <button class="btn btn-small fill-column"><%= I18n.t("rde.actions.fill_toggle") %></button>
-          <button class="btn btn-small reorder-columns"><%= I18n.t("rde.actions.reorder_toggle") %></button>
+          <button class="btn btn-sml fill-column"><%= I18n.t("rde.actions.fill_toggle") %></button>
+          <button class="btn btn-sml reorder-columns"><%= I18n.t("rde.actions.reorder_toggle") %></button>
         </div>
 
-        <button class="btn btn-small toggle-inline-errors active"><%= I18n.t("rde.actions.inline_errors_toggle") %></button>
+        <button class="btn btn-sml toggle-inline-errors active"><%= I18n.t("rde.actions.inline_errors_toggle") %></button>
 
-        <a href="#" id="rde_reset" class="btn btn-small"><%= I18n.t("rde.actions.reset") %></a>
+        <a href="#" id="rde_reset" class="btn btn-sml"><%= I18n.t("rde.actions.reset") %></a>
         </p>
 
         <div class="fill-column-form rde-inline-form" style="display: none;">
@@ -64,15 +64,15 @@
                   </div>
                 </div>
                 <div class="form-actions">
-                  <button class="btn btn-primary btn-small disabled" disabled="disabled"><%= I18n.t("rde.fill_column.apply_basic_fill") %></button>
-                  <button class="btn btn-small btn-cancel"><%= I18n.t("actions.cancel") %></button>
+                  <button class="btn btn-primary btn-sml disabled" disabled="disabled"><%= I18n.t("rde.fill_column.apply_basic_fill") %></button>
+                  <button class="btn btn-sml btn-cancel"><%= I18n.t("actions.cancel") %></button>
                 </div>
               </fieldset>
             </div>
             <div class="tab-pane" id="fill_sequence" data-sequence-generator-url="<%= url_for :controller => :utils, :action => :generate_sequence %>">
               <div class="alert alert-warning" id="sequenceTooSmallMsg" style="display: none;">
                 <p><%= I18n.t("rde.fill_column.sequence_count_warning") %></p>
-                <button class="btn btn-warning btn-small btn-continue-sequence-fill"><%= I18n.t("actions.continue") %></button>
+                <button class="btn btn-warning btn-sml btn-continue-sequence-fill"><%= I18n.t("actions.continue") %></button>
               </div>
               <fieldset>
                 <div class="control-group">
@@ -88,15 +88,15 @@
                     <input id="sequenceFillFrom" class="input-mini" type="text" placeholder="From"/> -
                     <input id="sequenceFillTo" class="input-mini" type="text" placeholder="To"/>
                     <input id="sequenceFillSuffix" class="input-mini" type="text" placeholder="Suffix"/>
-                    <button class="btn btn-small preview-sequence"><%= I18n.t("rde.fill_column.preview_sequence") %></button>
+                    <button class="btn btn-sml preview-sequence"><%= I18n.t("rde.fill_column.preview_sequence") %></button>
                   </div>
                 </div>
                 <div class="control-group">
                   <div class="controls sequence-preview"></div>
                 </div>
                 <div class="form-actions">
-                  <button class="btn btn-primary btn-small disabled" disabled="disabled"><%= I18n.t("rde.fill_column.apply_sequence_fill") %></button>
-                  <button class="btn btn-small btn-cancel"><%= I18n.t("actions.cancel") %></button>
+                  <button class="btn btn-primary btn-sml disabled" disabled="disabled"><%= I18n.t("rde.fill_column.apply_sequence_fill") %></button>
+                  <button class="btn btn-sml btn-cancel"><%= I18n.t("actions.cancel") %></button>
                 </div>
               </fieldset>
             </div>
@@ -105,11 +105,11 @@
 
         <div id="columnReorderForm" class="rde-inline-form" style="display: none;">
           <select id="columnOrder" multiple="multiple"></select>
-          <a href="JavaScript:void(0);" id="columnOrderUp" class="btn btn-mini"><span class="icon icon-arrow-up"></span></a>
-          <a href="JavaScript:void(0);" id="columnOrderDown" class="btn btn-mini"><span class="icon icon-arrow-down"></span></a>
+          <a href="JavaScript:void(0);" id="columnOrderUp" class="btn btn-xs"><span class="glyphicon glyphicon-arrow-up"></span></a>
+          <a href="JavaScript:void(0);" id="columnOrderDown" class="btn btn-xs"><span class="glyphicon glyphicon-arrow-down"></span></a>
           <div class="form-actions">
-            <button class="btn btn-primary btn-small disabled" disabled="disabled"><%= I18n.t("rde.reorder_columns.apply_order") %></button>
-            <button class="btn btn-small btn-cancel"><%= I18n.t("actions.cancel") %></button>
+            <button class="btn btn-primary btn-sml disabled" disabled="disabled"><%= I18n.t("rde.reorder_columns.apply_order") %></button>
+            <button class="btn btn-sml btn-cancel"><%= I18n.t("actions.cancel") %></button>
           </div>
         </div>
 
@@ -148,13 +148,13 @@
         <br/>
         <div>
           <div class="btn-group">
-            <button class="btn btn-small btn-success add-row"><%= I18n.t("rde.actions.add_row") %></button>
-            <button class="btn btn-small btn-success dropdown-toggle add-rows-dropdown" data-toggle="dropdown">
+            <button class="btn btn-sml btn-success add-row"><%= I18n.t("rde.actions.add_row") %></button>
+            <button class="btn btn-sml btn-success dropdown-toggle add-rows-dropdown" data-toggle="dropdown">
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu add-rows-form">
               <div><input type="number" class="input-medium" value="1" /></div>
-              <button class="btn btn-small input-medium btn-primary" type="button"><%= I18n.t("rde.actions.add_rows") %></button>
+              <button class="btn btn-sml input-medium btn-primary" type="button"><%= I18n.t("rde.actions.add_rows") %></button>
             </div>
           </div>
         </div>

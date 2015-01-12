@@ -1,11 +1,11 @@
 <% if user_can?('cancel_importer_job') && ["queued", "running"].include?(@job.status) && "true" == AppConfig[:import_jobs_cancelable].to_s %>
-  <div class="row-fluid">
+  <div class="row">
     <div class="col-md-12">
       <div class="record-toolbar">
         <div class="btn-group btn-toolbar pull-right">
           <div class="btn btn-inline-form">
             <%= button_confirm_action I18n.t("job._frontend.actions.cancel"), url_for(:controller => :jobs, :action => :cancel, :id => @job.id), {
-                    :class => "btn btn-small btn-danger"
+                    :class => "btn btn-sml btn-danger"
             } %>
           </div>
         </div>

@@ -1,16 +1,16 @@
 <%= setup_context(:title => I18n.t("repository._plural")) %>
 
-<div class="row-fluid">
+<div class="row">
   <div class="col-md-3">
     <%= render_aspace_partial :partial => "search/filter" %>
   </div>
   <div class="col-md-9">
     <% if user_can?('manage_repository') %>
-      <div class="row-fluid">
+      <div class="row">
         <div class="col-md-12">
           <div class="record-toolbar">
             <div class="btn-group pull-right">
-              <%= link_to I18n.t("repository._frontend.action.create"), {:controller => :repositories, :action => :new}, :class => "btn btn-small" %>
+              <%= link_to I18n.t("repository._frontend.action.create"), {:controller => :repositories, :action => :new}, :class => "btn btn-sml" %>
             </div>
           </div>
         </div>

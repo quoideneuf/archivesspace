@@ -1,17 +1,17 @@
 <% if user_can?('update_location_record') %>
-  <div class="row-fluid">
+  <div class="row">
     <div class="col-md-12">
       <div class="record-toolbar">
         <% if !['edit', 'update'].include?(controller.action_name) %>
           <div class="pull-left">
             <div class="btn-group">
-              <%= link_to I18n.t("actions.edit"), {:controller => :locations, :action => :edit, :id => @location.id}, :class => "btn btn-small btn-primary" %>
+              <%= link_to I18n.t("actions.edit"), {:controller => :locations, :action => :edit, :id => @location.id}, :class => "btn btn-sml btn-primary" %>
             </div>
           </div>
         <% end %>
         <% if ['edit', 'update'].include?(controller.action_name) %>
           <div class="pull-left revert-changes">
-            <%= link_to I18n.t("actions.revert"), {:controller => :locations, :action => :edit, :id => @location.id}, :class => "btn btn-small" %>
+            <%= link_to I18n.t("actions.revert"), {:controller => :locations, :action => :edit, :id => @location.id}, :class => "btn btn-sml" %>
             <%= I18n.t("actions.toolbar_disabled_message") %>
           </div>
         <% end %>

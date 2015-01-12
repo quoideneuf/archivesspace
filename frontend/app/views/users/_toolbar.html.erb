@@ -1,8 +1,8 @@
-<div class="row-fluid">
+<div class="row">
   <div class="col-md-12">
     <div class="record-toolbar">
       <div class="pull-left save-changes">
-        <button type="submit" class="btn btn-primary btn-small">
+        <button type="submit" class="btn btn-primary btn-sml">
           <% if @user.id %>
             <%= I18n.t("user._frontend.action.update_account") %>
           <% else %>
@@ -12,7 +12,7 @@
       </div>
       <% if ['edit', 'update'].include?(controller.action_name) %>
         <div class="pull-left revert-changes">
-          <%= link_to I18n.t("actions.revert"), {:controller => :users, :action => :edit, :id => @user.id}, :class => "btn btn-small" %>
+          <%= link_to I18n.t("actions.revert"), {:controller => :users, :action => :edit, :id => @user.id}, :class => "btn btn-sml" %>
           <%= I18n.t("actions.toolbar_disabled_message") %>
         </div>
       <% end %>

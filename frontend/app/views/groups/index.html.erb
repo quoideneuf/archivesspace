@@ -1,15 +1,15 @@
 <%= setup_context :title => I18n.t("group._plural") %>
 
-<div class="row-fluid">
+<div class="row">
    <div class="col-md-3">
    </div>
 
   <div class="col-md-9">
-    <div class="row-fluid">
+    <div class="row">
       <div class="col-md-12">
         <div class="record-toolbar">
           <div class="btn-group pull-right">
-            <%= link_to I18n.t("group._frontend.action.create"), {:controller => :groups, :action => :new}, :class => "btn btn-small" %>
+            <%= link_to I18n.t("group._frontend.action.create"), {:controller => :groups, :action => :new}, :class => "btn btn-sml" %>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
          <tr>
            <td><%= group.description %> <small>(<%= group.group_code %>)</small></td>
            <td>
-             <%= link_to I18n.t("actions.edit"), {:controller => :groups, :action => :edit, :id => group.id}, :class => "btn btn-mini btn-primary" %>
+             <%= link_to I18n.t("actions.edit"), {:controller => :groups, :action => :edit, :id => group.id}, :class => "btn btn-xs btn-primary" %>
            </td>
          </tr>
          <% end %>

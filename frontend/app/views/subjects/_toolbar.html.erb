@@ -1,20 +1,20 @@
 <% if user_can?('update_subject_record') %>
-  <div class="row-fluid">
+  <div class="row">
     <div class="col-md-12">
       <div class="record-toolbar">
         <% if ['new', 'create', 'edit', 'update'].include?(controller.action_name) %>
           <div class="pull-left save-changes">
-            <button type="submit" class="btn btn-primary btn-small"><%= I18n.t("actions.save_prefix") %></button>
+            <button type="submit" class="btn btn-primary btn-sml"><%= I18n.t("actions.save_prefix") %></button>
           </div>
         <% else %>
           <div class="btn-group pull-left">
-            <%= link_to I18n.t("actions.edit"), {:controller => :subjects, :action => :edit, :id => @subject.id}, :class => "btn btn-small btn-primary" %>
+            <%= link_to I18n.t("actions.edit"), {:controller => :subjects, :action => :edit, :id => @subject.id}, :class => "btn btn-sml btn-primary" %>
           </div>
         <% end %>
 
         <% if ['edit', 'update'].include?(controller.action_name) %>
           <div class="pull-left revert-changes">
-            <%= link_to I18n.t("actions.revert"), {:controller => :subjects, :action => :edit, :id => @subject.id}, :class => "btn btn-small" %>
+            <%= link_to I18n.t("actions.revert"), {:controller => :subjects, :action => :edit, :id => @subject.id}, :class => "btn btn-sml" %>
             <%= I18n.t("actions.toolbar_disabled_message") %>
           </div>
         <% end %>

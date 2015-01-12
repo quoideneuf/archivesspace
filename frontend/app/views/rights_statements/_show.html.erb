@@ -8,10 +8,10 @@
     <% rights_statements.each_with_index do | rights_statement, index | %>
       <div class="accordion-group">
         <div class="accordion-heading">
-          <div class="row-fluid collapsed accordion-toggle" data-toggle="collapse" data-parent="#rights_statements_accordion" href="#rights_statement_<%= index %>">
+          <div class="row collapsed accordion-toggle" data-toggle="collapse" data-parent="#rights_statements_accordion" href="#rights_statement_<%= index %>">
             <div class="col-md-1">
-              <span class="icon-chevron-right"></span>
-              <span class="icon-chevron-down"></span>
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="glyphicon glyphicon-chevron-down"></span>
             </div>
             <div class="col-md-3">
               <%= I18n.t("enumerations.rights_statement_rights_type.#{rights_statement['rights_type']}", :default => rights_statement['rights_type']) %>

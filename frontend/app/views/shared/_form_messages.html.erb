@@ -32,7 +32,7 @@
            $matched.closest(".control-group, td").addClass(type);
          }
          if ($matched && !$("." + type + "[data-target=" + elt + "]").hasClass("linked-to-field")) {
-           $("." + type + "[data-target=" + elt + "]").addClass("linked-to-field").append("<span class='icon-chevron-down'></span>").click(function() {
+           $("." + type + "[data-target=" + elt + "]").addClass("linked-to-field").append("<span class='glyphicon glyphicon-chevron-down'></span>").click(function() {
 
              var $scrollTo = $matched;
 

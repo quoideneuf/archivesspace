@@ -10,18 +10,18 @@
    add_column(I18n.t("location._singular"), proc {|record| record['title']}, :sortable => true, :sort_by => 'title_sort')
 %>
 
-<div class="row-fluid">
+<div class="row">
   <div class="col-md-3">
     <%= render_aspace_partial :partial => "search/filter" %>
   </div>
   <div class="col-md-9">
     <% if user_can?('update_location_record') %>
-      <div class="row-fluid">
+      <div class="row">
         <div class="col-md-12">
           <div class="record-toolbar">
             <div class="btn-group pull-right">
-              <%= link_to I18n.t("location._frontend.action.create"), {:controller => :locations, :action => :new}, :class => "btn btn-small" %>
-              <%= link_to I18n.t("location._frontend.action.batch"), {:controller => :locations, :action => :batch}, :class => "btn btn-small" %>
+              <%= link_to I18n.t("location._frontend.action.create"), {:controller => :locations, :action => :new}, :class => "btn btn-sml" %>
+              <%= link_to I18n.t("location._frontend.action.batch"), {:controller => :locations, :action => :batch}, :class => "btn btn-sml" %>
             </div>
           </div>
         </div>

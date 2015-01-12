@@ -8,7 +8,7 @@
         <label style="float: left;">&#160;<%= I18n.t("search_sorting.and") %>&#160;</label>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <span class="inset-label"><%= @search_data.sorted_by_label(title_sort_label, 1) %></span>
-          <span class="btn btn-mini last"><span class="caret"></span></span>
+          <span class="btn btn-xs last"><span class="caret"></span></span>
         </a>
         <ul class="dropdown-menu pull-right">
           <% if @search_data.weightable? %>
@@ -44,7 +44,7 @@
       <label style="float: left;"><%= I18n.t("search_sorting.sort_by") %>&#160;</label>
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <span class="inset-label"><%= @search_data.sorted_by_label(title_sort_label) %></span>
-        <span class="btn btn-mini last"><span class="caret"></span></span>
+        <span class="btn btn-xs last"><span class="caret"></span></span>
       </a>
       <ul class="dropdown-menu pull-right">
         <% if @search_data.weightable? %>

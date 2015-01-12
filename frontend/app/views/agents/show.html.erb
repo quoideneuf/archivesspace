@@ -1,6 +1,6 @@
 <%= setup_context :object => @agent, :controller => :agents, :agent_type => @agent.agent_type, :title => @agent.title %>
 
-<div class="row-fluid">
+<div class="row">
    <div class="col-md-3">
       <%= render_aspace_partial :partial => "agents/sidebar" %>
    </div>
@@ -12,7 +12,7 @@
 
         <%= render_aspace_partial :partial => "shared/flash_messages" %>
 
-        <div class="row-fluid">
+        <div class="row">
           <section id="basic_information">
             <h3><%= I18n.t("agent._frontend.section.basic_information") %></h3>
 
@@ -29,17 +29,17 @@
           <%= render_aspace_partial :partial => "dates/show", :locals => { :dates => @agent.dates_of_existence, :section_title => I18n.t("agent.dates_of_existence"), :section_id => "dates_of_existence", :context => readonly } %>
         <% end %>
 
-        <div class="row-fluid">
+        <div class="row">
           <section id="<%= @agent.agent_type %>_names">
             <h3><%= I18n.t("agent_name._plural") %></h3>
             <div class="accordion details" id="agent_name_accordion">
               <% @agent.names.each_with_index do | name, index | %>
                 <div class="accordion-group">
                   <div class="accordion-heading">
-                    <div class="row-fluid accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_name_accordion" href="#agent_name_<%= index %>">
+                    <div class="row accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_name_accordion" href="#agent_name_<%= index %>">
                       <div class="col-md-1">
-                        <span class="icon-chevron-right"></span>
-                        <span class="icon-chevron-down"></span>
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
                       </div>
                       <div class="col-md-6">
                         <%= name['sort_name'] %>
@@ -65,17 +65,17 @@
         <% if @agent.agent_contacts.length > 0 %>
           <%= render_aspace_partial :partial => "agents/contact_details" %>
 
-          <div class="row-fluid">
+          <div class="row">
             <section id="<%= @agent.agent_type %>_contact_details">
               <h3><%= I18n.t("agent_contact._plural") %></h3>
               <div class="accordion details" id="agent_contact_accordion">
                 <% @agent.agent_contacts.each_with_index do | contact, index | %>
                   <div class="accordion-group">
                     <div class="accordion-heading">
-                      <div class="row-fluid accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_contact_accordion" href="#agent_contact_<%= index %>">
+                      <div class="row accordion-toggle collapsed" data-toggle="collapse" data-parent="#agent_contact_accordion" href="#agent_contact_<%= index %>">
                         <div class="col-md-1">
-                          <span class="icon-chevron-right"></span>
-                          <span class="icon-chevron-down"></span>
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                          <span class="glyphicon glyphicon-chevron-down"></span>
                         </div>
                         <div class="col-md-7">
                           <%= contact['name'] %>
