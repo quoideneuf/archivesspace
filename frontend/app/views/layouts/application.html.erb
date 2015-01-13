@@ -43,17 +43,16 @@
 </head>
 <body data-spy="scroll" data-target="#archivesSpaceSidebar" data-offset="20" class="action-<%= controller.action_name %>">
 
-   <header>
-     <%= render "shared/browser_support" %>
-     <%= render "shared/header_global" %>
-     <%= render "site/branding" %>
-     <% if current_repo %><%= render "shared/header_repository" %><% end %>
-   </header>
+  <div class="container center-block">
+    <header>
+      <%= render "shared/browser_support" %>
+      <%= render "shared/header_global" %>
+      <%= render "site/branding" %>
+      <% if current_repo %><%= render "shared/header_repository" %><% end %>
+    </header>
 
    <div class="content-pane container">
-      <div class="container">
        <%= yield %>
-      </div>
    </div>
 
    <footer>
@@ -61,5 +60,7 @@
    </footer>
 
    <%= render "shared/templates" %>
+
+  </div>
 </body>
 </html>
