@@ -5,7 +5,7 @@
         <% if not @event.suppressed %>
           <% if !['edit', 'update'].include?(controller.action_name) %>
             <div class="btn-group pull-left">
-              <%= link_to I18n.t("actions.edit"), {:controller => :events, :action => :edit, :id => @event.id}, :class => "btn btn-sml btn-primary" %>
+              <%= link_to I18n.t("actions.edit"), {:controller => :events, :action => :edit, :id => @event.id}, :class => "btn btn-sm btn-primary" %>
             </div>
           <% end %>
         <% end %>

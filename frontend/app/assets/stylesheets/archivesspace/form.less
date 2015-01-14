@@ -62,7 +62,7 @@ fieldset {
   }
 }
 
-form .control-group {
+form .form-group {
   &.conditionally-required {
     > .control-label {
       background-image: asset-url('archivesspace/conditionally_required.png');
@@ -147,6 +147,8 @@ form .control-group {
   #gradient > .vertical(#F3F3F3, #EDEDED);
   border-bottom: 1px solid #DDD;
   padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .record-pane section h3 .btn.pull-right,
@@ -646,9 +648,22 @@ ul.subrecord-form-list {
   }
 }
 
+//make date help appear inline
+
+.date-field {
+  float: left;
+}
+
 .help-inline {
   color: #888;
 }
+
+
+label {
+  font-weight: normal;
+}
+
+
 
 .identifier-display {
   .identifier-display-part {
@@ -779,3 +794,11 @@ ul.subrecord-form-list {
     display: none;
   }
 }
+
+// four part id controls
+.form-group {
+  .id_0, .id_1, .id_2, .id_3 {
+    display: inline;
+  }
+}
+

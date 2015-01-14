@@ -14,7 +14,7 @@
          <div class="col-md-12">
            <div class="record-toolbar">
              <div class="pull-right">
-               <%= link_to I18n.t("classification._frontend.action.create"), {:controller => :classifications, :action => :new}, :class => "btn btn-sml" %>
+               <%= link_to I18n.t("classification._frontend.action.create"), {:controller => :classifications, :action => :new}, :class => "btn btn-sm" %>
                <% if user_can?("delete_classification_record") %>
                  <%= button_delete_multiple_action(:classifications) %>
                <% end %>

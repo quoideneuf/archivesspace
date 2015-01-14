@@ -183,9 +183,9 @@ $(function() {
     scope = scope || $(document.body);
     $(".date-field:not(.initialised)", scope).each(function() {
       var $dateInput = $(this);
-      $dateInput.wrap("<div class='input-append'></div>");
+      $dateInput.wrap("<div class='input-group'></div>");
       $dateInput.addClass("initialised");
-      var $btn = $("<button type='button' class='btn'><span class='icon-calendar'></span></button>");
+      var $btn = $("<div class='input-group-btn'><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-calendar'></span></button></div>");
       $dateInput.after($btn);
       $btn.datepicker($dateInput.data()).on("changeDate", function() {
           $dateInput.val($btn.data("date"));

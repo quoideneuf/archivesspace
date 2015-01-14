@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <div class="record-toolbar">
         <div class="btn-group pull-right">
-          <%= link_to "#{I18n.t("actions.create")} #{I18n.t("enumeration.value")}", {:controller => :enumerations, :action => :new, :id => JSONModel(:enumeration).id_for(@enumeration["uri"])}, "data-toggle" => "modal-ajax", :class=> "btn btn-sml" %>
+          <%= link_to "#{I18n.t("actions.create")} #{I18n.t("enumeration.value")}", {:controller => :enumerations, :action => :new, :id => JSONModel(:enumeration).id_for(@enumeration["uri"])}, "data-toggle" => "modal-ajax", :class=> "btn btn-sm" %>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
         <div class="col-md-12">
           <div class="record-toolbar">
             <div class="pull-right">
-              <%= link_to I18n.t("subject._frontend.action.create"), {:controller => :subjects, :action => :new}, :class => "btn btn-sml" %>
+              <%= link_to I18n.t("subject._frontend.action.create"), {:controller => :subjects, :action => :new}, :class => "btn btn-sm" %>
               <% if user_can?('delete_subject_record') %>
                 <%= button_delete_multiple_action(:subjects) %>
               <% end %>

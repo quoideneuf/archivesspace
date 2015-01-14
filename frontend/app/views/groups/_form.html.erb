@@ -6,9 +6,9 @@
     <div class="member-toolbar">
       <div class="input-append">
         <input id="new-member" class="input-medium" type="text" autocomplete="off" placeholder="Username" />
-        <button id="add-new-member" class="btn btn-sml"><%= I18n.t("actions.add") %></button>
+        <button id="add-new-member" class="btn btn-sm"><%= I18n.t("actions.add") %></button>
       </div>
-      <button id="remove-member" class="btn btn-sml" disabled="disabled"><%= I18n.t("actions.remove") %></button>
+      <button id="remove-member" class="btn btn-sm" disabled="disabled"><%= I18n.t("actions.remove") %></button>
     </div>
     <select id="<%= form.id_for("member_usernames") %>" multiple="multiple">
       <% (@group.member_usernames or []).each do |username| %>

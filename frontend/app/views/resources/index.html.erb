@@ -18,7 +18,7 @@
          <div class="col-md-12">
            <div class="record-toolbar">
              <div class="pull-right">
-               <%= link_to I18n.t("resource._frontend.action.create"), {:controller => :resources, :action => :new}, :class => "btn btn-sml" %>
+               <%= link_to I18n.t("resource._frontend.action.create"), {:controller => :resources, :action => :new}, :class => "btn btn-sm" %>
                <% if user_can?("delete_archival_record") %>
                  <%= button_delete_multiple_action(:archival_records) %>
                <% end %>
