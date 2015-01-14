@@ -28,7 +28,7 @@
         <div id="instance_<%= index %>" class="accordion-body collapse">
           <%= read_only_view(instance) %>
           <% if instance["instance_type"] === "digital_object" %>
-            <div class="control-group">
+            <div class="form-group">
               <div class="control-label"><%= I18n.t("instance.digital_object") %></div>
               <div class="controls token-list">
                 <%= render_token :object => instance["digital_object"]["_resolved"],

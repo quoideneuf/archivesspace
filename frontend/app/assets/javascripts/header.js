@@ -89,7 +89,8 @@ $(function() {
     event.stopPropagation();
     event.preventDefault();
 
-    $(".nav .search-switcher").toggle();
+    $(".nav .search-switcher span").toggleClass('glyphicon-chevron-down');
+    $(".nav .search-switcher span").toggleClass('glyphicon-chevron-up');
     $advancedSearchContainer.slideToggle();
   });
 
@@ -97,7 +98,8 @@ $(function() {
     event.stopPropagation();
     event.preventDefault();
 
-    $(".nav .search-switcher").toggle();
+    $(".nav .search-switcher span").removeClass('glyphicon-chevron-up');
+    $(".nav .search-switcher span").addClass('glyphicon-chevron-down');
     $advancedSearchContainer.slideUp();
   });
 

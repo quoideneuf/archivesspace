@@ -1,7 +1,7 @@
 <% define_template "interrelated_accessions" do |form| %>
   <% if form.obj['jsonmodel_type'] == 'accession' %>
     <div class="interrelated-accessions-form subrecord-form-fields">
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><%= I18n.t("interrelated_accession.relationship_type") %></label>
         <div class="controls">
           <select class="related-accession-type">

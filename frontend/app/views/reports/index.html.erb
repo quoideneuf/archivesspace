@@ -33,7 +33,7 @@
                        if report_params.length > 1
                     %>
                       <% report_params.each do | param | %>
-                        <div class="control-group <% if @report_errors &&  @report["uri_suffix"] === report["uri_suffix"] && @report_errors['error'].has_key?(param[0]) %>error<% end %>">
+                        <div class="form-group <% if @report_errors &&  @report["uri_suffix"] === report["uri_suffix"] && @report_errors['error'].has_key?(param[0]) %>error<% end %>">
                           <label class="control-label"><%= I18n.t("reports.parameters.#{param[0]}", :default => param[0]) %></label>
                           <div class="controls">
                             <% if param[1] === "Date" %>
@@ -46,7 +46,7 @@
                       <% end %>
                       <hr/>
                     <% end %>
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label">Format</label>
                       <div class="controls">
                         <%= form.select("format", options_for_select(@report_data["formats"].map{|format| [I18n.t("reports.formats.#{format}", :default => format), format]}, @report_params["format"])) %>

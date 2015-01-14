@@ -51,13 +51,13 @@
           <div class="tab-content">
             <div class="tab-pane active" id="fill_basic">
               <fieldset>
-                <div class="control-group">
+                <div class="form-group">
                   <label class="control-label" for="basicFillTargetColumn"><%= I18n.t("rde.column_label") %></label>
                   <div class="controls">
                     <select id="basicFillTargetColumn"><option selected="selected" class="empty"></option></select>
                   </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                   <label class="control-label" for="basicFillTargetColumn"><%= I18n.t("rde.fill_column.fill_value") %></label>
                   <div class="controls fill-value-container">
                     <div class="alert alert-info"><%= I18n.t("rde.fill_column.select_a_column") %></div>
@@ -75,13 +75,13 @@
                 <button class="btn btn-warning btn-sml btn-continue-sequence-fill"><%= I18n.t("actions.continue") %></button>
               </div>
               <fieldset>
-                <div class="control-group">
+                <div class="form-group">
                   <label class="control-label" for="sequenceFillTargetColumn"><%= I18n.t("rde.column_label") %></label>
                   <div class="controls">
                     <select id="sequenceFillTargetColumn"><option selected="selected" class="empty"></option></select>
                   </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                   <label class="control-label"><%= I18n.t("rde.fill_column.fill_value") %></label>
                   <div class="controls fill-value-container">
                     <input id="sequenceFillPrefix" class="input-mini" type="text" placeholder="Prefix"/>
@@ -91,7 +91,7 @@
                     <button class="btn btn-sml preview-sequence"><%= I18n.t("rde.fill_column.preview_sequence") %></button>
                   </div>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                   <div class="controls sequence-preview"></div>
                 </div>
                 <div class="form-actions">

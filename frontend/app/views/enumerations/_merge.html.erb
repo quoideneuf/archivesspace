@@ -9,21 +9,21 @@
     <div class="modal-body">
       <%= render_aspace_partial :partial => "shared/form_messages", :locals => {:form => form} %>
       <fieldset>
-        <div class="control-group required">
+        <div class="form-group required">
           <label class="control-label" for="enum_selector"><%= I18n.t("enumeration.name") %></label>
           <div class="controls label-only">
             <%= @enumeration["name"] %>
             <%= form.hidden_input :name %>
           </div>
         </div>
-        <div class="control-group required">
+        <div class="form-group required">
           <label class="control-label" for="enum_selector"><%= I18n.t("enumeration.value") %></label>
           <div class="controls label-only">
             <%= I18n.t("enumerations.#{@enumeration["name"]}.#{@value}", :default => @value) %>
             <%= form.hidden_input :value, @value %>
           </div>
         </div>
-        <div class="control-group required">
+        <div class="form-group required">
           <label class="control-label" for="enum_selector"><%= I18n.t("enumeration.merge_into") %></label>
           <div class="controls">
                    <%= select_tag "merge_into", options_for_select(@enumeration["values"].reject{|v| v === @value}.map{|v| [I18n.t("enumerations.#{@enumeration["name"]}.#{v}", :default => v), v]}, @merge) %>

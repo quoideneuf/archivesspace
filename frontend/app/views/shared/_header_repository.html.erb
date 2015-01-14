@@ -1,14 +1,16 @@
 <div class="container repository-header">
-<div class="navbar">
-  <div class="container">
-    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-repository-collapse">
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-repository-collapse">
       <span class="glyphicon glyphicon-bar"></span>
       <span class="glyphicon glyphicon-bar"></span>
       <span class="glyphicon glyphicon-bar"></span>
     </button>
-    <div class="nav-collapse nav-repository-collapse collapse">
+  </div>
+  <div class="container">
+    <div class="navbar-collapse nav-repository-collapse collapse navbar-default">
       <% if session[:user] and session[:repo_id] %>
-      <ul class="nav">
+      <ul class="nav navbar-nav">
         <li <% if controller_name === "welcome" %>class="active"<% end %>>
           <%= link_to raw('<span class="glyphicon glyphicon-home"></span>'), :controller => :welcome, :action => :index %>
         </li>
@@ -85,56 +87,55 @@
         <% end %>
         <li>
           <%= form_tag(url_for(:controller => :search, :action => :do_search), :method => :get, :class => "navbar-form pull-left") do %>
-          <div class="input-append">
-            <input id="global-search-box" type="text" class="col-md-2" placeholder="<%= I18n.t("navbar.search_placeholder") %>" name="q" value="<%= params[:q] %>"/>
-            <button id="global-search-button" class="btn" title="<%= I18n.t("navbar.search_button_title") %>"><span class="glyphicon glyphicon-search"></span></button>
-            <button class="btn search-switcher last" title="<%= I18n.t("navbar.show_advanced_search_button_title") %>" <% if params["advanced"] %>style="display:none"<% end %>><span class='glyphicon glyphicon-chevron-down'></span></button>
-            <button class="btn search-switcher last" title="<%= I18n.t("navbar.hide_advanced_search_button_title") %>" <% if !params["advanced"] %>style="display:none"<% end %>><span class='glyphicon glyphicon-chevron-up'></span></button>
+          <div class="input-group">
+            <input id="global-search-box" type="text" class="col-md-2 form-control" placeholder="<%= I18n.t("navbar.search_placeholder") %>" name="q" value="<%= params[:q] %>"/>
+            <div class="input-group-btn">
+              <button id="global-search-button" class="btn btn-default" title="<%= I18n.t("navbar.search_button_title") %>"><span class="glyphicon glyphicon-search"></span></button>
+              <button class="btn btn-default search-switcher last" title="<%= I18n.t("navbar.show_advanced_search_button_title") %>" <% if params["advanced"] %>style="display:none"<% end %>><span class='glyphicon glyphicon-chevron-down'></span></button>
+            </div>
           </div>
           <% end %>
         </li>
       </ul>
-      <ul class="nav pull-right">
-
-        <li class=" dropdown repo-container">
-          <div class="input-append">
-            <span class="inset-label">
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown repo-container">
+          <div class="inset-label">
               <span class="repository-label has-popover" data-trigger="hover" data-placement="bottom" data-html='true' data-title="<span class='glyphicon glyphicon-hdd'></span> <%= CGI::escapeHTML(current_repo['repo_code']) %>" data-content="<%= CGI::escapeHTML(current_repo['name']) %>">
                 <span class="glyphicon glyphicon-hdd"></span><span class="current-repository-id"><% if current_repo %><%= current_repo['repo_code'] %><% end %></span>
               </span>
-            </span>
-            <a class="btn dropdown-toggle last" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
-            <ul class="dropdown-menu pull-right">
-              <% if user_can?('manage_repository') %>
-              <li><%= link_to I18n.t("navbar.manage_groups"), :controller => :groups, :action => :index %></li>
-              <li><%= link_to I18n.t("user._frontend.section.manage_access"), :controller => :users, :action => :manage_access %></li>
-              <li><%= link_to I18n.t("navbar.repo_preferences"), :controller => :preferences, :action => :edit, :id => 0, :repo => true %></li>
-              <li class="divider"></li>
-              <% end %>
-              <% if user_can?('transfer_repository') && @repositories.length > 1 %>
-              <li><%= link_to I18n.t("repository._frontend.section.transfer"), :controller => :repositories, :action => :transfer, :id => session[:repo_id] %></li>
-              <li class="divider"></li>
-              <% end %>
-              <% if user_can?('import_records') %>
-              <li><%= link_to I18n.t("job._plural"), :controller => :jobs, :action => :index %></li>
-              <li class="divider"></li>
-              <% end %>
+          </div>
+          <div class="inset-btn-group">
+            <a class="btn btn-default dropdown-toggle last" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu pull-right">
+                <% if user_can?('manage_repository') %>
+                  <li><%= link_to I18n.t("navbar.manage_groups"), :controller => :groups, :action => :index %></li>
+                  <li><%= link_to I18n.t("user._frontend.section.manage_access"), :controller => :users, :action => :manage_access %></li>
+                  <li><%= link_to I18n.t("navbar.repo_preferences"), :controller => :preferences, :action => :edit, :id => 0, :repo => true %></li>
+                  <li class="divider"></li>
+                <% end %>
+                <% if user_can?('transfer_repository') && @repositories.length > 1 %>
+                  <li><%= link_to I18n.t("repository._frontend.section.transfer"), :controller => :repositories, :action => :transfer, :id => session[:repo_id] %></li>
+                  <li class="divider"></li>
+                <% end %>
+                <% if user_can?('import_records') %>
+                  <li><%= link_to I18n.t("job._plural"), :controller => :jobs, :action => :index %></li>
+                  <li class="divider"></li>
+                <% end %>
 
-              <li><%= link_to I18n.t("navbar.list_reports"), :controller => :reports, :action => :index %></li>
-              <% if Plugins.repository_menu_items.any? {|plugin| has_permission_for_controller?(session, plugin)} %>
-              <li class="dropdown-submenu">
-                <a href="javascript:void(0);"><%= I18n.t("navbar.plugins") %></a>
-                <ul class="dropdown-menu">
-                  <% Plugins.repository_menu_items.each do |plugin| %>
-                  <% if has_permission_for_controller?(session, plugin) %>
-                  <li><%= link_to I18n.t("plugins.#{plugin}.label"), :controller => plugin.intern, :action => :index %></li>
-                  <% end %>
-                  <% end %>
-                </ul>
-              </li>
-              <% end %>
-
-            </ul>
+                <li><%= link_to I18n.t("navbar.list_reports"), :controller => :reports, :action => :index %></li>
+                <% if Plugins.repository_menu_items.any? {|plugin| has_permission_for_controller?(session, plugin)} %>
+                  <li class="dropdown-submenu">
+                    <a href="javascript:void(0);"><%= I18n.t("navbar.plugins") %></a>
+                    <ul class="dropdown-menu">
+                      <% Plugins.repository_menu_items.each do |plugin| %>
+                        <% if has_permission_for_controller?(session, plugin) %>
+                          <li><%= link_to I18n.t("plugins.#{plugin}.label"), :controller => plugin.intern, :action => :index %></li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
             <% end %>
           </div>
         </li>
@@ -143,10 +144,10 @@
         <% end %>
       </ul>
     </div><!-- /.nav-collapse -->
-  </div>
-
 </div>
 
-<div class="advanced-search-container <% if params["advanced"].blank? or params["advanced"]  === 'false' %>hide<% end %>">
+</nav>
+<div class="advanced-search-container" <% if params["advanced"].blank? or params["advanced"]  === 'false' %>hidden<% end %>>
 <%= render_aspace_partial :partial => "shared/advanced_search" %>
 </div>
+

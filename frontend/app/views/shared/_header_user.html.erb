@@ -51,13 +51,13 @@
   <% end %>
 
   <li class="dropdown user-container">
-    <div class="input-append">
-      <span class="inset-label">
-        <span class="user-label has-popover" data-trigger="hover" data-placement="bottom" data-html='true' data-title='<span class="glyphicon glyphicon-user"></span> <%= CGI::escapeHTML(session[:user]) %>'>
-          <span class="glyphicon glyphicon-user"></span><%= session[:user] %>
-        </span>
+    <div class="inset-label">
+      <span class="user-label has-popover" data-trigger="hover" data-placement="bottom" data-html='true' data-title='<span class="glyphicon glyphicon-user"></span> <%= CGI::escapeHTML(session[:user]) %>'>
+      <span class="glyphicon glyphicon-user"></span><%= session[:user] %>
       </span>
-      <a class="btn dropdown-toggle last" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+    </div>
+    <div class="inset-btn-group">
+      <a class="btn btn-default dropdown-toggle last" data-toggle="dropdown" href="#"><span class="caret"></span></a>
       <ul class="dropdown-menu pull-right">
 
         <li><%= link_to I18n.t("navbar.user_global_preferences"), :controller => :preferences, :action => :edit, :id => 0, :global => true %></li>

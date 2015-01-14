@@ -18,7 +18,7 @@
         <div class='subrecord-form-container form-horizontal'>
           <% if %w{ environment globals jvm_properties appconfig memory db_info  }.include?(key.to_s) %> 
             <% @info[key].each_pair do |k, v| %>
-              <div class='control-group'>
+              <div class='form-group'>
               <label class='control-label'><%= k %></label>
               <% if v.is_a?(Proc) %>
                 hi

@@ -1,5 +1,5 @@
 <%= form_tag({:controller => "session",:action => "login"}, :method => "post", :class => "login") do %>
-  <div class="control-group">
+  <div class="form-group">
     <p class="help-inline login-message"><%= I18n.t "navbar.login_fail" %></p>
     <p class="alert alert-success"><%= I18n.t "navbar.login_success" %>.</p>
     <input id="user_username" type="text" name="username" size="30" placeholder="Username" />

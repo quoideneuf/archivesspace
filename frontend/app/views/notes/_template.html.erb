@@ -26,7 +26,7 @@
       <% form.emit_template(item["jsonmodel_type"]) %>
     <% else %>
       <div class="subrecord-form-fields">
-        <div class="control-group required">
+        <div class="form-group required">
           <label class="control-label"><%= I18n.t("note.note_type") %></label>
           <div class="controls">
             <select class="top-level-note-type">
@@ -51,7 +51,7 @@
     <% form.emit_template(item["jsonmodel_type"]) %>
   <% else %>
     <div class="subrecord-form-fields">
-      <div class="control-group required">
+      <div class="form-group required">
         <label class="control-label"><%= I18n.t("note.note_type") %></label>
         <div class="controls">
           <select class="top-level-note-type">
@@ -71,7 +71,7 @@
 
 <% define_template "note_type_nil" do |form | %>
   <div class="inline-subform">
-    <div class="control-group">
+    <div class="form-group">
       <div class="control-label"></div>
       <div class="controls"><%= I18n.t("note._frontend.messages.select_a_note_type") %></div>
     </div>
@@ -103,7 +103,7 @@
 
 
 <% define_template "content_items" do |form, opts = {}| %>
-  <div class="control-group <% if opts[:required] %>required<% end %>">
+  <div class="form-group <% if opts[:required] %>required<% end %>">
     <label class="control-label"><%= I18n.t("content_items.content") %></label>
     <div class="controls content-list">
       <%= form.list_for((form["content"] || [""]), "content[]") do |item| %>
@@ -151,7 +151,7 @@
       <%= form.label_and_select("enumeration", form.possible_options_for("enumeration", true)) %>
       <%= form.label_and_boolean("publish", {}, user_prefs["publish"]) %>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><%= I18n.t("note_orderedlist.items") %></label>
         <div class="controls">
           <%= form.list_for(form["items"], "items[]") do |item| %>
@@ -177,7 +177,7 @@
     <% form.emit_template(item["jsonmodel_type"]) %>
   <% else %>
     <div class="subrecord-form-fields">
-      <div class="control-group required">
+      <div class="form-group required">
         <label class="control-label"><%= I18n.t("note.note_type") %></label>
         <div class="controls">
           <select class="multipart-note-type">
@@ -240,7 +240,7 @@
     <% form.emit_template(item["jsonmodel_type"]) %>
   <% else %>
     <div class="subrecord-form-fields">
-      <div class="control-group required">
+      <div class="form-group required">
         <label class="control-label"><%= I18n.t("note.note_type") %></label>
         <div class="controls">
           <select class="bioghist-note-type">
@@ -377,7 +377,7 @@
       <%= form.hidden_input("ingest_problem") %>
       <%= form.label_and_boolean("publish", {}, user_prefs["publish"]) %>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><%= I18n.t("note_outline.levels") %></label>
         <div class="controls note-outline-levels">
           <%= form.list_for((form["levels"] || []), "levels[]") do |item| %>
@@ -493,7 +493,7 @@
 <% define_template "chronology_item" do |form, item| %>
   <div class="subrecord-form-fields" data-type="chronology_item">
     <%= form.label_and_textfield("event_date") %>
-    <div class="control-group">
+    <div class="form-group">
       <label class="control-label"><%= I18n.t("chronology_item.events") %></label>
       <div class="controls">
         <%= form.list_for(form["events"], "events[]") do |event| %>
@@ -529,7 +529,7 @@
 
       <hr/>
 
-      <div class="control-group">
+      <div class="form-group">
         <label class="control-label"><%= I18n.t("note_bibliography.items") %></label>
         <div class="controls">
           <%= form.list_for(form["items"], "items[]") do |item| %>

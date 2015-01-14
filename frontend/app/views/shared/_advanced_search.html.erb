@@ -90,7 +90,7 @@
 
 <div id="template_advanced_search_op_select"><!--
   {if first}
-  <select name="op${index}" id="op${index}" class="advanced-search-row-op-input">
+  <select name="op${index}" id="op${index}" class="advanced-search-row-op-input form-control">
     <option></option>
     <% values_for_operator.select{|op| op[1] == "NOT"}.each do |op| %><option value="<%= op[1] %>" {if query.op == "<%= op[1] %>" || (query.negated && "NOT" == "<%= op[1] %>")}selected{/if}><%= op[0] %></option><% end %>
   </select>
@@ -104,14 +104,14 @@
 
 <div id="template_advanced_search_text_fields"><!--
   <div class="col-md-3">
-    <select name="f${index}" id="f${index}" <% if values_for[:text].length > AspaceFormHelper::COMBOBOX_MIN_LIMIT %> data-combobox="true"<% end %>>
+    <select name="f${index}" id="f${index}" class="form-control" <% if values_for[:text].length > AspaceFormHelper::COMBOBOX_MIN_LIMIT %> data-combobox="true"<% end %>>
       <% values_for[:text].each do |op| %>
         <%= emit_option(op) %>
       <% end %>
     </select>
   </div>
   <div class="col-md-6">
-    <%= text_field_tag "v${index}", "${query.value}", :id => "v${index}" %>
+    <%= text_field_tag "v${index}", "${query.value}", :id => "v${index}", :class => 'form-control'%>
   </div>
 --></div>
 
@@ -132,7 +132,7 @@
       </select>
     </div>
     <div class="col-md-8">
-      <div class="control-group">
+      <div class="form-group">
         <%= text_field_tag "v${index}", "${query.value}", :id => "v${index}", :class => "date-field", :"data-format" => "yyyy-mm-dd", :"data-date" => Date.today.strftime('%Y-%m-%d') %>
       </div>
     </div>
