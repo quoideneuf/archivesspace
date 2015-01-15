@@ -6,6 +6,7 @@ var AS = {};
 
 // initialise ajax modal
 $(function() {
+
   AS.openAjaxModal = function(href) {
     $("body").append('<div class="modal hide" id="tempAjaxModal"></div>');
 
@@ -99,12 +100,10 @@ $(function() {
       var $items = $(".subrecord-form-list:first > li", $section);
 
       var $submenu = getSubMenuHTML();
-      //if ($items.length > 1) {
-        for (var i=0; i<$items.length; i++) {
-          $submenu.append(getSubMenuItemHTML($items[i]));
-        }
-        $link.append($submenu);
-      //}
+      for (var i=0; i<$items.length; i++) {
+        $submenu.append(getSubMenuItemHTML($items[i]));
+      }
+      $link.append($submenu);
     });
   };
 
@@ -113,9 +112,9 @@ $(function() {
       event.preventDefault();
 
       var $target_item = $(this);
-      $($target_item.attr("href")).ScrollTo({
-        callback: function() {
-          $(".active", "#archivesSpaceSidebar").removeClass("active");
+      $.scrollTo($target_item.attr("href"), 1000, {
+        onAfter: function() {
+         $(".active", "#archivesSpaceSidebar").removeClass("active");
           var $active = $target_item.parents("li:first");
           $active.addClass("active");
         }
@@ -143,8 +142,8 @@ $(function() {
 
         var $section = $($this.parent().closest("a").attr("href"));
         var $target = $($(".subrecord-form-list:first > li", $section)[$this.parent().index()]);
-        $target.ScrollTo({
-          callback: function() {
+        $.scrollTo($target, 1000, {
+          onAfter: function() {
             $(".active", "#archivesSpaceSidebar").removeClass("active");
             $this.parent().parent().closest("li").addClass("active");
           }

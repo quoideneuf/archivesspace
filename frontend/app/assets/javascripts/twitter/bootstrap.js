@@ -2,7 +2,7 @@
 //= require bootstrap/alert
 //= require twitter/bootstrap/bootstrap-modal.archivesspace
 //= require bootstrap/dropdown
-//= require twitter/bootstrap/bootstrap-scrollspy.archivesspace
+//= require bootstrap/scrollspy
 //= require bootstrap/tab
 //= require twitter/bootstrap/bootstrap-tooltip.archivesspace
 //= require twitter/bootstrap/bootstrap-popover.archivesspace
