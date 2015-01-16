@@ -176,7 +176,7 @@ $(function() {
 });
 
 // date fields and datepicker initialisation
-$.fn.combobox.defaults.template = '<div class="combobox-container input-append"><input type="hidden" /><input type="text" autocomplete="off" /><span class="add-on btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
+$.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
 $(function() {
   var initDateFields = function(scope) {
     scope = scope || $(document.body);
