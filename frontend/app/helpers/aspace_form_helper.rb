@@ -234,6 +234,7 @@ module AspaceFormHelper
 
     def label_and_boolean(name, opts = {}, default = false, force_checked = false)
       opts[:col_size] = 1
+      opts[:controls_class] = "checkbox"
       label_with_field(name, checkbox(name, opts, default, force_checked), opts)
     end
 
@@ -279,6 +280,7 @@ module AspaceFormHelper
 
       placeholder = I18n.t("#{i18n_for(name)}_placeholder", :default => '')
       options[:placeholder] = placeholder if not placeholder.empty?
+      options[:class] = "form-control"
 
       value = @forms.tag("input", options.merge(opts),
                  false, false)
@@ -363,7 +365,7 @@ module AspaceFormHelper
     end
 
     def checkbox(name, opts = {}, default = true, force_checked = false)
-      options = {:id => "#{id_for(name)}", :type => "checkbox", :name => path(name), :value => 1, :class => "form-control"}
+      options = {:id => "#{id_for(name)}", :type => "checkbox", :name => path(name), :value => 1}
       options[:checked] = "checked" if force_checked or (obj[name] === true) or (obj[name] === "true") or (obj[name].nil? and default)
 
       @forms.tag("input", options.merge(opts), false, false)
