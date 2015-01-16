@@ -34,16 +34,16 @@
          if ($matched && !$("." + type + "[data-target=" + elt + "]").hasClass("linked-to-field")) {
            $("." + type + "[data-target=" + elt + "]").addClass("linked-to-field").append("<span class='glyphicon glyphicon-chevron-down'></span>").click(function() {
 
-             var $scrollTo = $matched;
+             var $scrollTarget = $matched;
 
              // CodeMirror text areas are hidden so we can't scroll to
              // them.  Scroll nearby :)
              if (!$matched.is(":visible")) {
-               $scrollTo = $matched.parent();
+               $scrollTarget = $matched.parent();
              }
 
-             $scrollTo.ScrollTo({
-              callback: function() {
+             $.scrollTo($scrollTarget, 1000, {
+              onAfter: function() {
                 $matched.focus();
               }
              });
@@ -84,7 +84,7 @@
    </script>
 
    <% if @exceptions.has_key?(:errors) %>
-      <div class="alert alert-error">
+      <div class="alert alert-danger">
          <% @exceptions[:errors].each do |attr, messages| %>
             <div class="errors-for-attribute">
               <% messages.each do |msg| %>

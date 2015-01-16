@@ -8,7 +8,7 @@
 <div id="archivesSpaceSidebar">
   <ul class="nav nav-list as-nav-list">
     <% if @exceptions %>
-      <li class="<% if @exceptions.has_key?(:errors)%>alert-error<% end %>">
+      <li class="<% if @exceptions.has_key?(:errors)%>alert-danger<% end %>">
         <a href="#form_messages"><%= I18n.t("errors.sidebar_label") %>  <span class="glyphicon glyphicon-chevron-right"></span></a>
       </li>
     <% end %>

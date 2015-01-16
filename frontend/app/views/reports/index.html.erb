@@ -18,7 +18,7 @@
                 <p><%= report['description'] %></p>
                 <hr/>
               <% if @report_errors && @report["uri_suffix"] === report["uri_suffix"] %>
-                <div class="alert alert-error">
+                <div class="alert alert-danger">
                   <% @report_errors['error'].each do | field, msgs |%>
                   <div><%= I18n.t("reports.parameters.#{field}", :default => field) %> - <%= msgs.join(", ") %></div>
                   <% end %>

@@ -15,7 +15,7 @@
         <p><%= I18n.t("#{singular}._frontend.messages.transfer_description") %></p>
         <%= form_context :transfer, {} do |form| %>
         <fieldset>
-          <div class="alert alert-error missing-ref-message" style="display: none;"><%= I18n.t "#{singular}._frontend.messages.transfer_target" %></div>
+          <div class="alert alert-danger missing-ref-message" style="display: none;"><%= I18n.t "#{singular}._frontend.messages.transfer_target" %></div>
           <%= form.label_and_select "ref", other_repositories %>
         </fieldset>
         <div class="form-actions">
