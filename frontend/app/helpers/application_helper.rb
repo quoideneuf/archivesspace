@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def include_theme_css
     css = ""
-    css += stylesheet_link_tag("themes/#{ArchivesSpace::Application.config.frontend_theme}/bootstrap", :media => "all")
+    # css += stylesheet_link_tag("themes/#{ArchivesSpace::Application.config.frontend_theme}/bootstrap", :media => "all")
     css += stylesheet_link_tag("themes/#{ArchivesSpace::Application.config.frontend_theme}/application", :media => "all")
     css.html_safe
   end
@@ -82,7 +82,7 @@ module ApplicationHelper
     html = "<div class='"
     html += "token " if not opts[:inside_token_editor] 
     html += "#{opts[:type]} has-popover' data-trigger='#{opts[:trigger] || "custom"}' data-html='true' data-placement='#{opts[:placement] || "bottom"}' data-content=\"#{CGI.escape_html(popover)}\" data-template=\"#{popover_template}\" tabindex='1'>"
-    html += "<span class='glyphicon glyphicon-token'></span>"
+    html += "<span class='icon-token'></span>"
     html += opts[:label]
     html += "</div>"
     html.html_safe
@@ -105,7 +105,8 @@ module ApplicationHelper
               :target => "_blank", 
               :title => title,
               :class => "context-help has-tooltip",
-              "data-placement" => "left"
+              "data-placement" => "left",
+              "data-container" => "body",
             }.merge(opts[:link_opts] || {})
            )
   end
@@ -171,7 +172,7 @@ module ApplicationHelper
     button_confirm_action(opts[:label] || I18n.t("actions.delete"),
                           url,
                           {
-                            :class => "btn btn-small btn-danger delete-record",
+                            :class => "btn btn-sm btn-danger delete-record",
                             :"data-title" => I18n.t("actions.delete_confirm_title"),
                             :"data-message" => I18n.t("actions.delete_confirm_message"),
                             :"data-confirm-btn-label" => "#{I18n.t("actions.delete")}",
@@ -182,7 +183,7 @@ module ApplicationHelper
 
   def button_delete_multiple_action(target_action)
     button_delete_action(url_for(:controller => :batch_delete, :action => target_action), {
-      :class => "btn btn-small btn-danger multiselect-enabled",
+      :class => "btn btn-sm btn-danger multiselect-enabled",
       :"data-multiselect" => "#tabledSearchResults",
       :"data-title" => I18n.t("actions.delete_multiple_confirm_title"),
       :"data-message" => I18n.t("actions.delete_multiple_confirm_message"),
@@ -193,7 +194,7 @@ module ApplicationHelper
 
   def display_audit_info(hash, opts = {})
     fmt = opts[:format] || 'wide'
-    html = "<div class='row-fluid'><div class='audit-display-#{fmt}'><small>"
+    html = "<div class='audit-display-#{fmt}'><small>"
     if hash['create_time'] and hash['user_mtime']
       if fmt == 'wide'
         html << "<strong>#{I18n.t("search_results.created")} #{hash['created_by']}</strong>"
@@ -209,7 +210,7 @@ module ApplicationHelper
         html << "</dl>"
       end
     end
-    html << "</small></div></div>"
+    html << "</small></div><div class='clearfix'></div>"
     html.html_safe
   end
 

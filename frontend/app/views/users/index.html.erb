@@ -4,15 +4,14 @@
    <div class="col-md-3"></div>
    <div class="col-md-9">
      <% if not @manage_access %>
-       <div class="row">
-         <div class="col-md-12">
-           <div class="record-toolbar">
-             <div class="btn-group pull-right">
-               <%= link_to I18n.t("user._frontend.action.create"), {:controller => :users, :action => :new}, :class => "btn btn-sm" %>
-             </div>
-           </div>
+
+       <div class="record-toolbar">
+         <div class="btn-group pull-right">
+           <%= link_to I18n.t("user._frontend.action.create"), {:controller => :users, :action => :new}, :class => "btn btn-sm btn-default" %>
          </div>
+         <br style="clear:both" /> <!-- So dirty! -->
        </div>
+
      <% end %>
 
     <div class="record-pane">

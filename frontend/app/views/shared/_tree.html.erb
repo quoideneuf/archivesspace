@@ -212,7 +212,6 @@
 
   <div id="tree_toolbar_template"><!--
     <div class="btn-toolbar">
-      <div class="btn-group"></div>
     </div>
   --></div>
 
@@ -221,14 +220,14 @@
   <div id="tree_nodenavigation_toolbar_template"><!--
     <div class="btn-group">
       {if defined('previous')}
-        <a href="#tree::${previous}" class="btn btn-xs btn-prev-tree-node"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        <a href="#tree::${previous}" class="btn btn-xs btn-default btn-prev-tree-node"><span class="glyphicon glyphicon-arrow-left"></span></a>
       {else}
-        <a disabled="disabled" class="btn btn-xs btn-prev-tree-node"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        <a class="btn btn-xs btn-default btn-prev-tree-node disabled"><span class="glyphicon glyphicon-arrow-left"></span></a>
       {/if}
       {if defined('next')}
-        <a href="#tree::${next}" class="btn btn-xs btn-next-tree-node"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a href="#tree::${next}" class="btn btn-xs btn-default btn-next-tree-node"><span class="glyphicon glyphicon-arrow-right"></span></a>
       {else}
-        <a disabled="disabled" class="btn btn-xs btn-next-tree-node"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a class="btn btn-xs btn-default btn-next-tree-node disabled"><span class="glyphicon glyphicon-arrow-right"></span></a>
       {/if}
     </div>
   --></div>
@@ -236,15 +235,14 @@
   <% if not read_only %>
 
     <div id="tree_nodeactions_toolbar_template"><!--
-      <div class="btn-group">
         <div class="btn-group">
           {if rules.hasOwnProperty("can_add_child")}
-            <a class="btn btn-xs add-child" rel="${rules.can_add_child.type}" href="javascript:void(0);" data-record-label="${rules.can_add_child.record_label}" title="${rules.can_add_child.action_label}">
+            <a class="btn btn-xs btn-default add-child" rel="${rules.can_add_child.type}" href="javascript:void(0);" data-record-label="${rules.can_add_child.record_label}" title="${rules.can_add_child.action_label}">
               ${rules.can_add_child.action_label}
             </a>
           {/if}
           {if rules.hasOwnProperty("can_add_sibling")}
-            <a class="btn btn-xs add-sibling" rel="${rules.can_add_sibling.type}" href="javascript:void(0);" data-record-label="${rules.can_add_child.record_label}" title="${rules.can_add_sibling.action_label}">
+            <a class="btn btn-xs btn-default add-sibling" rel="${rules.can_add_sibling.type}" href="javascript:void(0);" data-record-label="${rules.can_add_child.record_label}" title="${rules.can_add_sibling.action_label}">
               ${rules.can_add_sibling.action_label}
             </a>
           {/if}
@@ -252,16 +250,16 @@
       {if rules.hasOwnProperty("can_accept_paste_from_clipboard") || rules.hasOwnProperty("can_cut_to_clipboard")}
         <div class="btn-group">
           {if rules.hasOwnProperty("can_cut_to_clipboard") && rules.can_cut_to_clipboard}
-            <a href="#" class="btn btn-xs cut-node disabled"><%= I18n.t "actions.cut" %></a>
+            <a href="#" class="btn btn-xs btn-default cut-node disabled"><%= I18n.t "actions.cut" %></a>
           {/if}
           {if rules.hasOwnProperty("can_accept_paste_from_clipboard") && rules.can_accept_paste_from_clipboard}
-            <a href="#" class="btn btn-xs paste-node disabled"><%= I18n.t "actions.paste" %></a>
+            <a href="#" class="btn btn-xs btn-default paste-node disabled"><%= I18n.t "actions.paste" %></a>
           {/if}
         </div>
       {/if}
       {if rules.hasOwnProperty("can_move")}
         <div class="btn-group dropdown move-node-menu">
-          <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown" href="#" title="Move">
+          <a class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" href="#" title="Move">
             <%= I18n.t "actions.move" %>
             <span class="caret"></span>
           </a>
@@ -295,7 +293,7 @@
       {/if}
       {if rules.hasOwnProperty("can_transfer")}
         <div class="btn-group dropdown">
-          <a class="btn btn-xs dropdown-toggle transfer-node" data-toggle="dropdown" href="#" title="<%= I18n.t "actions.transfer" %>">
+          <a class="btn btn-xs btn-default dropdown-toggle transfer-node" data-toggle="dropdown" href="#" title="<%= I18n.t "actions.transfer" %>">
             <%= I18n.t "actions.transfer" %> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu tree-transfer-form">
@@ -319,12 +317,11 @@
       {/if}
       {if rules.hasOwnProperty("rapid_data_entry")}
         <div class="btn-group">
-          <a class="btn btn-xs add-children" rel="${rules.rapid_data_entry.type}" href="javascript:void(0);" title="${rules.rapid_data_entry.action_label}">
+          <a class="btn btn-xs btn-default add-children" rel="${rules.rapid_data_entry.type}" href="javascript:void(0);" title="${rules.rapid_data_entry.action_label}">
             ${rules.rapid_data_entry.action_label}
           </a>
         </div>
       {/if}
-      </div>
     --></div>
 
     <div id="tree_finish_action_template"><!--

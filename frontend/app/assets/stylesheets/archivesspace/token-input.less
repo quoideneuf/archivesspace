@@ -33,6 +33,7 @@ ul.token-input-list {
 
 .input-group ul.token-input-list  {
   .border-radius(@inputBorderRadius 0 0 @inputBorderRadius);
+  height: 100%;
 }
 
 ul.token-input-list li {
@@ -182,7 +183,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 
 .linker-wrapper.multiplicity-many li.token-input-input-token {
-  min-height: 28px;
+  min-height: 34px;
 }
 
 .token-input-input-token > input {
@@ -249,12 +250,13 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 .linker-wrapper.multiplicity-one {
   .token-input-list {
-    min-height: 28px;
+    min-height: 34px;
   }
 }
 
 .token-input-dropdown, .token-input-list, .token-list {
   .icon-token {
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     float: left;
     .opacity(75);
     margin: 2px 4px 0 0;
@@ -264,10 +266,20 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     .opacity(100);
   }
 
-  .agent_person .icon-token {background-position: @iconAgentPersonBackgroundPosition;}
-  .agent_software .icon-token {background-position: @iconAgentSoftwareBackgroundPosition;}
-  .agent_corporate_entity .icon-token {background-position: @iconAgentCorporateEntityBackgroundPosition;}
+  .agent_person .icon-token:before {
+    content: "\e008";    
+  }
+
+  .agent_software .icon-token:before {
+    content: "\e136";
+  }
+
+  .agent_corporate_entity .icon-token:before {
+    content: "\e139";
+  }
+
   .agent_family .icon-token {background-image: @iconAgentFamilyBackgroundImage; background-position: @iconAgentFamilyBackgroundPosition;}
+
   .resource .icon-token {background-position: @iconResourceBackgroundPosition;}
   .archival_object .icon-token {background-position: @iconArchivalObjectBackgroundPosition;}
   .digital_object .icon-token {background-position: @iconDigitalObjectBackgroundPosition;}

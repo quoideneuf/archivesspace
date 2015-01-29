@@ -1,13 +1,13 @@
-<div class="row">
+<div class="row breadcrumb-row">
    <div class="col-md-12">
-      <ul class="breadcrumb">
+      <ol class="breadcrumb">
          <li>
-            <%= link_to I18n.t("breadcrumb.home"), :controller => :welcome, :action => :index %><span class="divider">/</span>
+            <%= link_to I18n.t("breadcrumb.home"), :controller => :welcome, :action => :index %>
          </li>
          <% trail.each_with_index do |crumb, i| %>
             <% if i < trail.length - 1%>         
                <li>
-                  <%= link_to clean_mixed_content(crumb[0]) , crumb[1] %><span class="divider">/</span>
+                  <%= link_to clean_mixed_content(crumb[0]) , crumb[1] %>
                </li>
             <% else %>
                <li class="active"><%= clean_mixed_content( crumb[0])  %></li>

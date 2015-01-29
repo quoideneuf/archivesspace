@@ -1,11 +1,11 @@
 //= require bootstrap/transition
 //= require bootstrap/alert
-//= require twitter/bootstrap/bootstrap-modal.archivesspace
+//= require bootstrap/modal
 //= require bootstrap/dropdown
 //= require bootstrap/scrollspy
 //= require bootstrap/tab
-//= require twitter/bootstrap/bootstrap-tooltip.archivesspace
-//= require twitter/bootstrap/bootstrap-popover.archivesspace
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 //= require bootstrap/button
 //= require bootstrap/collapse
 //= require bootstrap/carousel

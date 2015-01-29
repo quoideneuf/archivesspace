@@ -106,6 +106,7 @@
 
     // jQuery plugin wrapper (thanks to jquery UI widget function)
     $.fn.jstree = function (settings) {
+      console.log(settings);
       var isMethodCall = (typeof settings == 'string'), // is this a method call like $().jstree("open_node")
         args = Array.prototype.slice.call(arguments, 1),
         returnValue = this;
@@ -120,6 +121,7 @@
         });
       }
       else {
+        console.log("NOT A METHOD CALL");
         this.each(function() {
           // extend settings and allow for multiple hashes and $.data
           var instance_id = $.data(this, "jstree-instance-id"),
@@ -156,9 +158,15 @@
           // push the new object to the instances array (at the same time set the default classes to the container) and init
           instances[instance_id] = new $.jstree._instance(instance_id, $(this).addClass("jstree jstree-" + instance_id), s);
           // init all activated plugins for this instance
+          
           $.each(instances[instance_id]._get_settings().plugins, function (i, val) { instances[instance_id].data[val] = {}; });
+
+          console.log("EACH INSTANCE");
           $.each(instances[instance_id]._get_settings().plugins, function (i, val) { if(plugins[val]) { plugins[val].__init.apply(instances[instance_id]); } });
           // initialize the instance
+          console.log(instances);
+          console.log(instance_id);
+
           setTimeout(function() { instances[instance_id].init(); }, 0);
         });
       }
@@ -635,7 +643,9 @@
           var s = skip_animation || is_ie6 ? 0 : this._get_settings().core.animation,
             t = this;
           if(!this._is_loaded(obj)) {
-            obj.children("a").addClass("jstree-loading");
+            // obj.children("a").addClass("jstree-loading");
+            obj.children("a").children("ins").hide()
+            obj.children("a").children("ins").after("<ins class='jstree-icon spinner'></ins>");
             this.load_node(obj, function () { t.open_node(obj, callback, skip_animation); }, callback);
           }
           else {
@@ -645,7 +655,11 @@
               });
             }
             if(s) { obj.children("ul").css("display","none"); }
-            obj.removeClass("jstree-closed").addClass("jstree-open").children("a").removeClass("jstree-loading");
+            obj.removeClass("jstree-closed").addClass("jstree-open");
+
+            obj.children("a").find("ins:nth-child(2)").remove();
+            obj.children("a").children("ins").show();
+// .children("a").removeClass("jstree-loading");
             if(s) { obj.children("ul").stop(true, true).slideDown(s, function () { this.style.display = ""; t.after_open(obj); }); }
             else { t.after_open(obj); }
             this.__callback({ "obj" : obj });

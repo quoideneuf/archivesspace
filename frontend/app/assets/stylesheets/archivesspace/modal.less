@@ -31,6 +31,35 @@
   }
 }
 
+.modal-body {
+  overflow: auto;
+}
+
+
+.modal-header {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* https://github.com/angular-ui/bootstrap/issues/2970 */
+
+/* html { */
+/*   height: 100%; */
+/* } */
+
+/* body { */
+/*   min-height: 100%; */
+/* } */
+
+/* .modal-backdrop { */
+/*   bottom: 0; */
+/*   position: fixed; */
+/* } */
+
+/* end https://github.com/angular-ui/bootstrap/issues/2970 */
+
 @media (min-width: 768px) and (max-width: 979px) {
   .modal {
     &.container {

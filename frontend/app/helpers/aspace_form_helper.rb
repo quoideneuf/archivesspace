@@ -220,7 +220,13 @@ module AspaceFormHelper
     def label_and_select(name, options, opts = {})
       options = ([""] + options) if opts[:nodefault]
       opts[:field_opts] ||= {}
-      opts[:field_opts][:class] = "form-control"
+
+      if opts[:field_opts].has_key? :class
+        opts[:field_opts][:class] << " form-control"
+      else
+        opts[:field_opts][:class] = "form-control"
+      end
+
       opts[:col_size] = 4
       widget = options.length < COMBOBOX_MIN_LIMIT ? select(name, options, opts[:field_opts] || {}) : combobox(name, options, opts[:field_opts] || {})
       label_with_field(name, widget, opts)
@@ -758,8 +764,8 @@ module AspaceFormHelper
       end
 
       html << "<div class='form-group'>"
-      html << "<div class='control-label'>#{I18n.t("#{prefix}#{jsonmodel_type.to_s}.#{property}")}</div>"
-      html << "<div class='label-only'>#{value}</div>"
+      html << "<div class='control-label col-md-3'>#{I18n.t("#{prefix}#{jsonmodel_type.to_s}.#{property}")}</div>"
+      html << "<div class='label-only col-md-9'>#{value}</div>"
       html << "</div>"
 
     end

@@ -93,7 +93,7 @@ $(function() {
       return;
     }
     $(".nav-list-submenu").remove();
-    $("#archivesSpaceSidebar .nav-list > li").each(function() {
+    $("#archivesSpaceSidebar .as-nav-list > li").each(function() {
       var $nav = $(this);
       var $link = $("a", $nav);
       var $section = $($link.attr("href"));
@@ -108,7 +108,7 @@ $(function() {
   };
 
   var bindSidebarEvents = function() {
-    $("#archivesSpaceSidebar .nav-list").on("click", "> li > a", function(event) {
+    $("#archivesSpaceSidebar .as-nav-list").on("click", "> li > a", function(event) {
       event.preventDefault();
 
       var $target_item = $(this);
@@ -123,7 +123,7 @@ $(function() {
   };
 
    var initSidebar = function() {
-    $("#archivesSpaceSidebar .nav-list:not(.initialised)").each(function() {
+    $("#archivesSpaceSidebar .as-nav-list:not(.initialised)").each(function() {
       $.proxy(bindSidebarEvents, this)();
       $(this).affix({
         offset: {
@@ -346,6 +346,7 @@ $(function() {
 
 AS.templateCache = [];
 AS.renderTemplate = function(templateId, data) {
+
   if (!AS.templateCache[templateId]) {
     var templateNode = $("#"+templateId).get(0);
     if (templateNode) {
@@ -393,15 +394,30 @@ AS.openQuickModal = function(title, message) {
  *  id : String - id of the modal element
  *  title : String - to be applied as the modal header
  *  contents : String/HTML - the contents of the modal
- *  fillScreen : String/false - 'full'-98% of screen, 'container'-match the container width, false-standard modal size
+ *  size : String/false - 'full'-98% of screen, 'large' - larger modal, 'container' - match the container width, false-standard modal size
  *  modalOpts : object - any twitter bootstrap options to pass on the modal dialog upon init.
  *  initiatedBy : Element - the link/button that initiated the modal. This element will be focused again upon close.
  */
 AS.openCustomModal = function(id, title, contents, fillScreen, modalOpts, initiatedBy) {
-  $("body").append(AS.renderTemplate("modal_custom_template", {id:id,title:title,content: "", fill: fillScreen||false}));
+  var templateData = {
+    id:id,
+    title:title,
+    content: "", 
+  }
+
+  // phase out the class on .modal in favor of .modal-dialog
+  if (fillScreen === 'large') {
+    templateData.dialogClass = 'modal-lg';
+    templateData.fill = false;
+  } else {
+    templateData.fill = fillScreen;
+    templateData.dialogClass = false;
+  }
+ 
+  $("body").append(AS.renderTemplate("modal_custom_template", templateData));
   var $modal = $("#"+id);
-  $modal.append(contents);
-  $modal.on("hidden", function() {
+  $modal.find('.modal-content').append(contents);
+  $modal.on("hidden.bs.modal", function() {
     $modal.remove();
     $(window).unbind("resize", resizeModal);
 
@@ -412,16 +428,16 @@ AS.openCustomModal = function(id, title, contents, fillScreen, modalOpts, initia
 
   var resizeModal = function() {
     var height;
-    if (fillScreen === 'full') {
+    if (fillScreen === 'full' || 'large') {
       height = $(window).height() - ($(window).height() * 0.03);
     } else {
       height = $(window).height() - ($(window).height() * 0.2);
     }
 
     $modal.height(height); // -20% for 10% top and bottom margins
-    var modalBodyHeight = $modal.height() - $(".modal-header", $modal).height() - $(".modal-footer", $modal).height() - 80;
+    var modalBodyHeight = $modal.height() - $(".modal-header", $modal).outerHeight() - $(".modal-footer", $modal).outerHeight() - 95;
     $(".modal-body", $modal).height(modalBodyHeight);
-    $modal.css("marginLeft", -$modal.width() / 2);
+    // $modal.css("marginLeft", -$modal.width() / 2);
   }
 
   if (fillScreen) {

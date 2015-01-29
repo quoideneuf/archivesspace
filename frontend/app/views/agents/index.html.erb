@@ -8,16 +8,17 @@
 %>
 <div class="row">
   <div class="col-md-3">
-    <%= render_aspace_partial :partial => "search/filter" %>
+    <div class="sidebar">
+      <%= render_aspace_partial :partial => "search/filter" %>
+    </div>
   </div>
   <div class="col-md-9">
     <% if user_can?('update_agent_record') %>
-      <div class="row">
-        <div class="col-md-12">
+
           <div class="record-toolbar">
-            <div class="pull-right">
+            <div class="btn-group pull-right">
               <div class="btn-group">
-                <a class="btn btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="#">
                   <%= I18n.t("agent._frontend.action.create") %>
                   <span class="caret"></span>
                 </a>
@@ -28,12 +29,13 @@
                   <li><%= link_to I18n.t("agent_software._singular"), :controller => :agents, :action => :new, :agent_type => :agent_software %></li>
                 </ul>
               </div>
+
               <% if user_can?('delete_agent_record') %>
                 <%= button_delete_multiple_action(:agents) %>
               <% end %>
             </div>
-        </div>
-      </div>
+            <br style="clear:both" /> <!-- So dirty! -->
+          </div>
     <% end %>
     <div class="record-pane">
       <%= link_to_help :topic => "search" %>

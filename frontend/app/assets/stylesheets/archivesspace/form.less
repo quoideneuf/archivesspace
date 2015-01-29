@@ -106,9 +106,8 @@ form .form-group {
   background-color: #fafcff;
 }
 
-.form-group .controls.label-only {
-  line-height: 18px;
-  padding-top: 6px;
+.form-group .label-only {
+  padding-top: 7px;
 }
 
 .inline-subform {
@@ -506,64 +505,6 @@ ul.subrecord-form-list {
   clear: both;
 }
 
-.nav-list {
-  > li {
-    > a {
-      padding: 5px 10px !important;
-      font-size: 12px;
-      overflow: hidden;
-      &:hover {
-        .transition(opacity 0.5s);
-        .nav-list-submenu a {
-          .opacity(100);
-        }
-      }
-    }
-  }
-
-  .nav-list-submenu {
-    list-style: none;
-    margin: 0;
-  
-    a {
-      .transition(~"opacity 0.5s, background-color 0.5s");
-      width: 6px;
-      height: 6px;
-      border: 1px solid #CCC;
-      float: left;
-      margin-right: 2px;
-      margin-top: 2px;
-      .border-radius(3px);
-      .opacity(50);
-    }
-  
-    a:hover {
-      .transition(background-color 0.5s);
-      background-color: #AAA;
-    }
-  }
-  .alert-error {
-    a {
-      background-color: #f2dede !important;
-      border-color: #eed3d7 !important;
-      color: #b94a48 !important;
-    }
-    &.active {
-       a {
-         background-color: #b94a48 !important;
-         color: #FFF !important;
-       }
-    }
-  }
-
-  .nav-list-submenu-link {
-    &.has-errors {
-      background-color: #f2dede;
-      border-color: #b94a48;
-    }
-  }
-}
-
 #reportListing {
   .accordion-heading {
     #gradient > .vertical(#F3F3F3, #EDEDED);
@@ -744,6 +685,10 @@ label {
 
   .collapse-subrecord-toggle {
     margin: 6px 6px 0 0;
+    .collapse {
+      display: inline;
+      visibility: visible;
+    }
 
     .expand {
       display: none;

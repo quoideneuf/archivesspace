@@ -5,14 +5,11 @@
    </div>
 
   <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="record-toolbar">
-          <div class="btn-group pull-right">
-            <%= link_to I18n.t("group._frontend.action.create"), {:controller => :groups, :action => :new}, :class => "btn btn-sm" %>
-          </div>
-        </div>
+    <div class="record-toolbar">
+      <div class="btn-group pull-right">
+        <%= link_to I18n.t("group._frontend.action.create"), {:controller => :groups, :action => :new}, :class => "btn btn-sm btn-default" %>
       </div>
+      <br style="clear:both" /> <!-- So dirty! -->
     </div>
 
     <div class="record-pane">

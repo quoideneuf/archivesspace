@@ -24,16 +24,16 @@
 
 <% if params["advanced"] != "true" %>
   <%= form_tag({}, :method => :get) do %>
-    <div class="input-group" style="width:100%">
-      <% build_search_params.reject{|k, v| k === "q"}.each do |k, v| %>
-        <% if v.kind_of? Array %>
-          <% v.each do |val| %>
-            <%= hidden_field_tag "#{k}[]", val %>
-          <% end %>
-        <% else %>
-          <%= hidden_field_tag k, v %>
+    <% build_search_params.reject{|k, v| k === "q"}.each do |k, v| %>
+      <% if v.kind_of? Array %>
+        <% v.each do |val| %>
+          <%= hidden_field_tag "#{k}[]", val %>
         <% end %>
+      <% else %>
+        <%= hidden_field_tag k, v %>
       <% end %>
+    <% end %>
+    <div class="input-group" style="width:100%">
       <input class="text-filter-field form-control" type="text" placeholder="<%= I18n.t("search_results.text_placeholder") %>" name="q" value="<%= params[:q] %>"/>
       <div class="input-group-btn">
         <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
@@ -47,7 +47,7 @@
   <ul>
     <% facets.each do |facet, facet_map| %>
       <li>
-        <%= link_to facet_map[:label], build_search_params({"add_filter_term" => facet_map[:filter_term]}) %> <span class="badge badge-info"><%= facet_map[:count] %></span>
+        <%= link_to facet_map[:label], build_search_params({"add_filter_term" => facet_map[:filter_term]}) %> <span class="badge"><%= facet_map[:count] %></span>
       </li>
     <% end %>
   </ul>
