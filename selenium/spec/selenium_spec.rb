@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe "ArchivesSpace user interface" do
 
-  describe "Repositories" do
+  xdescribe "Repositories" do
 
     before(:all) do
       @test_repo_code_1 = "test1#{Time.now.to_i}_#{$$}"
@@ -104,7 +104,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Groups" do
+  xdescribe "Groups" do
 
     before(:all) do
       @can_manage_repo = "group_manage#{Time.now.to_i}_#{$$}"
@@ -289,7 +289,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Subjects" do
+  xdescribe "Subjects" do
 
     before(:all) do
       login_as_archivist
@@ -391,7 +391,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Agents" do
+  xdescribe "Agents" do
 
     before(:all) do
       backend_login
@@ -657,7 +657,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Accessions" do
+  xdescribe "Accessions" do
 
     before(:all) do
       login_as_archivist
@@ -1204,7 +1204,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Pagination" do
+  xdescribe "Pagination" do
 
     before(:all) do
       login_as_repo_manager
@@ -1259,7 +1259,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Record Lifecycle" do
+  xdescribe "Record Lifecycle" do
 
     before(:all) do
       login_as_repo_manager
@@ -1409,7 +1409,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Events" do
+  xdescribe "Events" do
 
     before(:all) do
       login_as_archivist
@@ -1848,7 +1848,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Merging and transfering resources" do
+  xdescribe "Merging and transfering resources" do
 
     before(:all) do
       backend_login
@@ -1930,7 +1930,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Resource instances and containers" do
+  xdescribe "Resource instances and containers" do
 
     before(:all) do
      if !$test_repo
@@ -2073,7 +2073,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Notes" do
+  xdescribe "Notes" do
 
     before(:all) do
       login_as_archivist
@@ -2338,7 +2338,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Digital Objects" do
+  xdescribe "Digital Objects" do
 
     before(:all) do
       login_as_archivist
@@ -2530,7 +2530,7 @@ describe "ArchivesSpace user interface" do
 
 
 
-  describe "User management" do
+  xdescribe "User management" do
 
     before(:all) do
       @user = nil
@@ -2611,7 +2611,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Context Sensitive Help" do
+  xdescribe "Context Sensitive Help" do
 
     before(:all) do
       login_as_repo_manager
@@ -2647,7 +2647,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Users and authentication" do
+  xdescribe "Users and authentication" do
 
     before(:all) do
       @user = build(:user)
@@ -2704,7 +2704,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Enumeration Management" do
+  xdescribe "Enumeration Management" do
     before(:all) do
       if !$test_repo
         ($test_repo, $test_repo_uri) = create_test_repo("repo_#{Time.now.to_i}_#{$$}", "description")
@@ -2855,7 +2855,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Search" do
+  xdescribe "Search" do
 
     before(:all) do
       login_as_repo_manager
@@ -2887,7 +2887,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "RDE" do
+  xdescribe "RDE" do
 
     before(:all) do
       login_as_archivist
@@ -3158,7 +3158,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Digital Object RDE" do
+  xdescribe "Digital Object RDE" do
 
     before(:all) do
       login_as_archivist
@@ -3413,7 +3413,7 @@ describe "ArchivesSpace user interface" do
 
 
 
-  describe "Locations" do
+  xdescribe "Locations" do
 
     before(:all) do
       login_as_repo_manager
@@ -3546,7 +3546,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Location batch" do
+  xdescribe "Location batch" do
 
     before(:all) do
       login_as_repo_manager
@@ -3707,7 +3707,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Classifications" do
+  xdescribe "Classifications" do
 
     before(:all) do
       login_as_admin
@@ -3833,7 +3833,7 @@ describe "ArchivesSpace user interface" do
 
   end
 
-  describe "User Preferences" do
+  xdescribe "User Preferences" do
 
     before(:all) do
       login_as_admin
@@ -3867,7 +3867,7 @@ describe "ArchivesSpace user interface" do
 
   end
 
-  describe "Advanced Search" do
+  xdescribe "Advanced Search" do
 
     before(:all) do
       login_as_repo_manager
@@ -4073,7 +4073,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Permissions" do
+  xdescribe "Permissions" do
 
     before(:all) do
       @perm_test_repo = "perm_test#{Time.now.to_i}_#{$$}"
@@ -4117,7 +4117,7 @@ describe "ArchivesSpace user interface" do
   end
 
 
-  describe "Collection Management" do
+  xdescribe "Collection Management" do
 
     before(:all) do
       new_repo_code = "collection_management_test_#{Time.now.to_i}_#{$$}"
@@ -4190,7 +4190,7 @@ describe "ArchivesSpace user interface" do
 
   end
 
-  describe "System Information" do
+  xdescribe "System Information" do
 
     after(:each) do
       logout
@@ -4225,7 +4225,7 @@ describe "ArchivesSpace user interface" do
     end
   end
 
-  describe "Jobs" do
+  xdescribe "Jobs" do
 
     before(:all) do
       @repo = create(:repo)      
