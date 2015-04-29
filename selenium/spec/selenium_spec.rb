@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'spec_helper'
 
 describe "ArchivesSpace user interface" do
@@ -1640,8 +1641,9 @@ describe "ArchivesSpace user interface" do
 
       $driver.find_element_with_text('//div[contains(@class, "error")]', /Level of Description - Property is required but was missing/)
 
-      $driver.get("#{$frontend}")
-      $driver.switch_to.alert.accept
+
+      $driver.find_element(:link, "Revert Changes").click
+      $driver.find_element(:id, "dismissChangesButton").click
     end
 
 
@@ -1660,8 +1662,8 @@ describe "ArchivesSpace user interface" do
       $driver.find_element_with_text('//div[contains(@class, "error")]', /Dates - one or more required \(or enter a Title\)/i)
       $driver.find_element_with_text('//div[contains(@class, "error")]', /Title - must not be an empty string \(or enter a Date\)/i)
 
-      $driver.get("#{$frontend}")
-      $driver.switch_to.alert.accept
+      $driver.find_element(:link, "Revert Changes").click
+      $driver.find_element(:id, "dismissChangesButton").click
     end
 
 
@@ -1725,8 +1727,8 @@ describe "ArchivesSpace user interface" do
         $driver.find_element_with_text('//div[contains(@class, "error")]', /Title - must not be an empty string/)
       }.to_not raise_error
 
-      $driver.get("#{$frontend}")
-      $driver.switch_to.alert.accept
+      $driver.find_element(:link, "Revert Changes").click
+      $driver.find_element(:id, "dismissChangesButton").click
     end
 
     it "can update an existing Archival Object" do
@@ -2305,11 +2307,8 @@ describe "ArchivesSpace user interface" do
 
       $driver.blocking_find_elements(:css => '#notes > .subrecord-form-container > .subrecord-form-list > li').length.should eq(3)
 
-
       $driver.find_element(:link, "Revert Changes").click
 
-
-      # Skip over "Save Your Changes" dialog i.e. don't save AO.
       $driver.find_element(:id, "dismissChangesButton").click
     end
 
