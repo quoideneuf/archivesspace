@@ -1,6 +1,5 @@
 require 'parallel_tests'
 require 'test_utils'
-# require_relative 'test_indexer'
 
 require 'sinatra/base'
 require_relative '../indexer/app/lib/realtime_indexer'
@@ -8,10 +7,6 @@ require_relative '../indexer/app/lib/periodic_indexer'
 
 require_relative 'spec/parallel_formatter_html.rb'
 require_relative 'spec/parallel_formatter_out.rb'
-
-
-require 'pry'
-
 
 namespace :integration do
 
