@@ -124,7 +124,7 @@ DEPENDENCIES
   rack (= 1.4.5)
   rack-session-sequel (= 0.0.1)
   rjack-jackson (= 1.8.11.0)
-  rspec
+  rspec (~> 3.3.0)
   rubyzip (= 1.0.0)
   rufus-lru (= 1.0.5)
   rufus-scheduler (~> 2.0.24)

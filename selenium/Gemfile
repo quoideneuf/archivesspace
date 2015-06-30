@@ -9,13 +9,11 @@ if File.exists?('../frontend/Gemfile') then
   eval File.read('../frontend/Gemfile'), nil, '../frontend/Gemfile'
 end
 
-
 gem 'multi_json', '1.10.0'
 gem 'rubyzip', '1.0.0'
 
 group "test" do
-	gem "rspec-core", "2.12.1"
 	gem "selenium-webdriver", "2.45.0"
-	gem "rspec", "2.12.0"
+	gem "rspec"
   gem "parallel_tests", "~> 1.3.9"
 end
