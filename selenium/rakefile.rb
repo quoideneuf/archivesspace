@@ -5,13 +5,17 @@ require 'sinatra/base'
 require_relative '../indexer/app/lib/realtime_indexer'
 require_relative '../indexer/app/lib/periodic_indexer'
 
-require_relative 'spec/parallel_formatter_html.rb'
-require_relative 'spec/parallel_formatter_out.rb'
+require_relative 'spec/parallel_formatter_html'
+require_relative 'spec/parallel_formatter_out'
+
+require_relative 'spec/spec_helper'
+
 
 namespace :integration do
 
   task :staff do
     standalone = true
+    indexer_thread = nil
 
     pattern = ENV['pattern'] || "_spec.rb"
     cores = ENV['cores'] || "2"
