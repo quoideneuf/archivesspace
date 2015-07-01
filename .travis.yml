@@ -43,5 +43,6 @@ addons:
     paths:
     - $( ls /var/tmp/*.png | tr "\n" ":" )
     - $( ls /tmp/*.png | tr "\n" ":" )
+    - $( ls /var/tmp/*.html | tr "\n" ":" )
     - $( sudo ls /var/log/mysql/* | tr "\n" ":" )
     - $( ls  /var/tmp/aspace-integration.log | tr "\n" ":" )
