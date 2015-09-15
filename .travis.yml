@@ -57,3 +57,4 @@ addons:
     - $( ls /var/log/mysql/* | tr "\n" ":" )
     - $( ls  /var/tmp/aspace-integration.log | tr "\n" ":" )
 sudo: false
+cache: bundler
