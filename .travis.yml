@@ -59,4 +59,4 @@ addons:
 sudo: false
 cache:
   directories:
-    - $HOME/build/gems
+    - $HOME/gems

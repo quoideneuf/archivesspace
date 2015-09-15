@@ -79,6 +79,34 @@
     </java>
   </target>
 
+  <target name="bootstrap-travis" depend="bootstrap-downloads" description="Download or retrieve from cache all required gems">
+    
+    <property name="gem.cache" location="#{env.HOME}/gems" />
+    <echo>Using ${gem.cache} as gem store</echo>
+
+    <target name="retrieve-gems" depends="cache.check" if="dir.exists">
+      <echo>Found gem cache</echo>
+      <copy todir="gems">
+        <fileset dir="${gem.cache}" />
+      </copy>
+    </target>
+
+    <target name="download-gems" depends="cache.check" unless="dir.exists">
+      <echo>No gem cache found. Downloading gems</echo>
+      <antcall target="bootstrap"></antcall>
+      <copy todir="#{gem.cache}">
+        <fileset dir="gems" />
+      </copy>
+    </target>
+    
+    <target name="cache.check">
+      <condition property="dir.exists">
+        <available file="${gem.cache}" type="dir"/>
+      </condition>
+    </target>
+  </target>
+
+
   <target name="bootstrap" depends="bootstrap-downloads" description="Download JRuby and install all required gems">
     <delete dir="gems/gems" />
     <delete dir="gems/specifications" />
@@ -512,19 +540,19 @@
 
   <!-- ^- Replaced by -v -->
 
-  <target name="travis:selenium:staff" depends="set-classpath, bootstrap-downloads">
+  <target name="travis:selenium:staff" depends="set-classpath, bootstrap-travis">
     <antcall target="db:migrate" />
     <antcall target="selenium:staff" />
     <antcall target="travis:db:nuke" />
   </target>
 
-  <target name="travis:selenium:public" depends="set-classpath, bootstrap">
+  <target name="travis:selenium:public" depends="set-classpath, bootstrap-travis">
     <antcall target="db:migrate" />
     <antcall target="selenium:public:test" />
     <antcall target="travis:db:nuke" />
   </target>
 
-  <target name="travis:test" depends="set-classpath, bootstrap">
+  <target name="travis:test" depends="set-classpath, bootstrap-travis">
     <antcall target="db:migrate" />
     <antcall target="backend:test" />
     <antcall target="frontend:test"/>
