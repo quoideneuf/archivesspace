@@ -80,14 +80,14 @@
   </target>
 
   <target name="travis:cache:check">
-    <property name="gem.cache" location="${env.HOME}/gems" />
+    <property name="gem.cache" location="${env.HOME}/asgems" />
     <condition property="dir.exists">
-      <available file="${gem.cache}" type="dir"/>
+      <available file="${gem.cache}/complete" type="dir"/>
     </condition>
   </target>
 
   <target name="travis:cache:retrieve" depends="travis:cache:check" if="dir.exists">
-    <property name="gem.cache" location="${env.HOME}/gems" />
+    <property name="gem.cache" location="${env.HOME}/asgems" />
     <echo>Found gem cache</echo>
     <copy todir="gems">
       <fileset dir="${gem.cache}" />
@@ -95,12 +95,13 @@
   </target>
 
   <target name="travis:cache:download" depends="travis:cache:check" unless="dir.exists">
-    <property name="gem.cache" location="${env.HOME}/gems" />
+    <property name="gem.cache" location="${env.HOME}/asgems" />
     <echo>No gem cache found. Downloading gems</echo>
     <antcall target="bootstrap"></antcall>
     <copy todir="${gem.cache}">
       <fileset dir="gems" />
     </copy>
+    <mkdir dir="${gem.cache}/complete" />
   </target>
 
 
