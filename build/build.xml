@@ -79,31 +79,36 @@
     </java>
   </target>
 
-  <target name="bootstrap-travis" depend="bootstrap-downloads" description="Download or retrieve from cache all required gems">
-    
-    <property name="gem.cache" location="#{env.HOME}/gems" />
+  <target name="travis:cache:check">
+    <property name="gem.cache" location="${env.HOME}/gems" />
+    <condition property="dir.exists">
+      <available file="${gem.cache}" type="dir"/>
+    </condition>
+  </target>
+
+  <target name="travis:cache:retrieve" depends="travis:cache:check" if="dir.exists">
+    <property name="gem.cache" location="${env.HOME}/gems" />
+    <echo>Found gem cache</echo>
+    <copy todir="gems">
+      <fileset dir="${gem.cache}" />
+    </copy>
+  </target>
+
+  <target name="travis:cache:download" depends="travis:cache:check" unless="dir.exists">
+    <property name="gem.cache" location="${env.HOME}/gems" />
+    <echo>No gem cache found. Downloading gems</echo>
+    <antcall target="bootstrap"></antcall>
+    <copy todir="${gem.cache}">
+      <fileset dir="gems" />
+    </copy>
+  </target>
+
+
+  <target name="bootstrap-travis" depends="bootstrap-downloads" description="Download or retrieve from cache all required gems">    
+    <property name="gem.cache" location="${env.HOME}/gems" />
     <echo>Using ${gem.cache} as gem store</echo>
-
-    <target name="retrieve-gems" depends="cache.check" if="dir.exists">
-      <echo>Found gem cache</echo>
-      <copy todir="gems">
-        <fileset dir="${gem.cache}" />
-      </copy>
-    </target>
-
-    <target name="download-gems" depends="cache.check" unless="dir.exists">
-      <echo>No gem cache found. Downloading gems</echo>
-      <antcall target="bootstrap"></antcall>
-      <copy todir="#{gem.cache}">
-        <fileset dir="gems" />
-      </copy>
-    </target>
-    
-    <target name="cache.check">
-      <condition property="dir.exists">
-        <available file="${gem.cache}" type="dir"/>
-      </condition>
-    </target>
+    <antcall target="travis:cache:retrieve"></antcall>
+    <antcall target="travis:cache:download"></antcall>
   </target>
 
 
