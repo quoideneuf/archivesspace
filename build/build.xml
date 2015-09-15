@@ -512,7 +512,7 @@
 
   <!-- ^- Replaced by -v -->
 
-  <target name="travis:selenium:staff" depends="set-classpath, bootstrap">
+  <target name="travis:selenium:staff" depends="set-classpath, bootstrap-downloads">
     <antcall target="db:migrate" />
     <antcall target="selenium:staff" />
     <antcall target="travis:db:nuke" />
