@@ -2,7 +2,55 @@
 //= require bootstrap-datepicker
 //= require bootstrap-combobox
 
-var AS = {};
+function ASConstructor() {
+
+  // TODO (?)
+  // it would be pretty easy to add some bottom-up
+  // dependency tracking here, so that we don't have
+  // to worry about the order when including AS assets
+
+  var modules = {
+    unloaded: {},
+    loaded: {}
+  };
+
+  var loadSafe = false;
+
+  function load(name, constructor) {
+    modules.loaded[name] = new constructor();
+  }
+
+  this.module = function(name, constructor) {
+    if (typeof(constructor) === 'function') {
+      modules.unloaded[name] = constructor;
+      return true;
+    } else if (constructor === true) { // i.e. reload
+      load(name, modules.unloaded[name]);
+      return this.module(name);
+    } else if (modules.loaded[name]) {
+      return modules.loaded[name];
+    } else if (typeof(modules.unloaded[name]) === 'undefined'){
+      throw new Error("Module '"+name+"' has not been defined");
+    } else if (loadSafe) {
+      return this.module(name, true);
+    } else {
+      throw new Error("Module '"+name+"' has not been loaded");
+    }
+  };
+
+  //load modules when JQuery is ready
+  $(function() {
+    _.forEach(modules.unloaded, function(constructor, name) {
+      load(name, constructor);
+    });
+
+    // and now it's ok to load anything registered later
+    loadSafe = true;
+  });
+}
+
+var AS = new ASConstructor();
+
 
 // initialise ajax modal
 $(function() {
@@ -69,12 +117,12 @@ $(function() {
 
 // sidebar action
 $(function() {
-  
+
   var getSubMenuHTML = function(numberOfRecords) {
-    if ( numberOfRecords < 1 ) { 
-      return ''; 
+    if ( numberOfRecords < 1 ) {
+      return '';
     } else {
-      return  $("<span class='nav-list-record-count badge'>" + numberOfRecords + "</span>") 
+      return  $("<span class='nav-list-record-count badge'>" + numberOfRecords + "</span>")
      }
   };
 
@@ -841,7 +889,6 @@ $(function() {
       switch (String.fromCharCode(event.which).toLowerCase()) {
       case 's':
         event.preventDefault();
-        console.log('ctrl-s');
         break;
       }
     }
