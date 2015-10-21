@@ -12,6 +12,13 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "bower-installer": "^1.2.0"
+    "bower-installer": "^1.2.0",
+    "jasmine-core": "^2.3.4",
+    "jasmine-jquery": "^2.1.1",
+    "jquery": "^1.11.1",
+    "jquery-ui": "jquery/jquery-ui#1.11.1",
+    "karma": "^0.13.11",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6"
   }
 }
