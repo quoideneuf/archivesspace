@@ -20,6 +20,7 @@ module.exports = function(config) {
       'jasmine/patches.js',
       'node_modules/jquery/dist/jquery.js',
       'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+      'node_modules/jasmine-ajax/lib/mock-ajax.js',
       'node_modules/jquery-ui/ui/core.js',
       'node_modules/jquery-ui/ui/widget.js',
       'node_modules/jquery-ui/ui/effect.js',
@@ -34,15 +35,10 @@ module.exports = function(config) {
       'app/assets/javascripts/*.js',
       'app/assets/javascripts/*.js.erb',
       'jasmine/*.js',
+      'jasmine/fixtures/*.js',
 
       {
         pattern: 'jasmine/fixtures/*.html',
-        watched: false,
-        included: false,
-        served: true
-      },
-      {
-        pattern: 'jasmine/fixtures/*',
         watched: false,
         included: false,
         served: true

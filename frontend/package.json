@@ -13,6 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "bower-installer": "^1.2.0",
+    "jasmine-ajax": "^3.2.0",
     "jasmine-core": "^2.3.4",
     "jasmine-jquery": "^2.1.1",
     "jquery": "^1.11.1",

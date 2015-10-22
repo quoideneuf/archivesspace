@@ -4,8 +4,7 @@
 //= require jstree.primary_selected
 //= require jstree.select_limit
 
-
-$(function() {
+AS.module('tree', function() {
   var tree;
   var $tree = $("#archives_tree"),
     $container = $("#object_container"),
@@ -1204,9 +1203,7 @@ $(function() {
       },
       plugins: [ "select_limit", "primary_selected", "types", "themes", "ui", "html_data", "crrm", "dnd", "hotkeys"]
     }).one("loaded.jstree", function() {
-
       tree = $tree.jstree(true);
-      AS._tree = tree; //just for browser debugging
 
       if (location.hash) {
         var node_id = location.hash.replace("#tree::","");
@@ -1352,6 +1349,7 @@ $(function() {
         $(window).data("ignore-hashchange", true);
       }   
       loadPaneForNode(node);
+
       setTimeout(function(){
         $tree.scrollTo($("#" + node.id), 0, {
           offsetTop: $tree.height() / 2
