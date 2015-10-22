@@ -1092,6 +1092,10 @@ AS.module('tree', function() {
                renderNodeText(nodeAppendees);
                 cb(nodeAppendees);
               });
+            },
+            error: function() {
+              $tree.removeClass('jstree-loading');
+              $tree.html("An error occurred while loading the tree");
             }
           });
         },
