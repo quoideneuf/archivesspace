@@ -841,7 +841,15 @@
     </java>
   </target>
 
-  <target name="public:test:accessibility" depends="set-classpath, public:copy-shared-resources, db:migrate:test" description="Run the unit test suite">
+  <target name="public:test:accessibility" depends="set-classpath, public:copy-shared-resources, db:migrate:test, solr:reset:test" description="Run the unit test suite">
+     <!-- TODO: when embedded solr is removed these actions can be deleted, see also: backend:devserver -->
+    <delete dir="${aspace.data_directory.test}/solr_home" />
+    <delete dir="${aspace.data_directory.test}/solr_index" />
+    <mkdir dir="${aspace.data_directory.test}/solr_home/collection1/conf" />
+    <mkdir dir="${aspace.data_directory.test}/solr_home/collection1/lib" />
+    <copy todir="${aspace.data_directory.test}/solr_home/collection1/lib">
+      <fileset dir="../solr/lib" />
+    </copy>
     <property name="spec" value=""/>
     <condition property="spec-arg" value="${spec}" else="">
       <isset property="spec"/>
