@@ -57,7 +57,7 @@ jobs:
         DB_ACCESSIBILITY_PORT: ${{ job.services.db-accessibility.ports[3306] }}
       run: |
         mysql --host 127.0.0.1 --port $DB_PORT -uroot -proot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
-        mysql --host 127.0.0.1 --port $DB_ACCESSIBILITY_PORT -uroot -proot archivesspace < build/mysql_db_fixtures/accessibility.sql
+        mysql --host 127.0.0.1 --port $DB_ACCESSIBILITY_PORT -uroot -proot accessibility < build/mysql_db_fixtures/accessibility.sql
 
     - name: Bootstrap ArchivesSpace
       run: |
