@@ -1,6 +1,10 @@
 name: Public Testing
 
 on:
+  push:
+    branches:
+      - ANW-1333-large-tree-node-roles
+
   pull_request:
     paths:
       - '.github/workflows/public.yml'
