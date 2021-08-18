@@ -168,35 +168,38 @@ $(function() {
 
     $advancedSearchRowContainer.append($row);
 
-    if (type == "date") {
-      $("#v"+index, $row).on("change", function(event) {
-        $(this).closest(".input-group").removeClass("has-error");
+    // if (type == "date") {
+    //   $("#v"+index, $row).on("change", function(event) {
+    //     $(this).closest(".input-group").removeClass("has-error");
 
-        var dop = $("#dop"+index, $row);
-        if (dop.val() == 'empty') {
-          enableAdvancedSearch();
-          return;
-        }
+    //     var dop = $("#dop"+index, $row);
+    //     if (dop.val() == 'empty') {
+    //       enableAdvancedSearch();
+    //       return;
+    //     }
 
-        function isValidDate(dateString) {
-          var dateRegex = /^\d\d\d\d\-\d\d-\d\d$/;
-          var isValidDateString = dateRegex.test(dateString);
+    //     function isValidDate(dateString) {
+    //       var dateRegex = /^\d\d\d\d\-\d\d-\d\d$/;
+    //       var isValidDateString = dateRegex.test(dateString);
 
-          if (!isValidDateString) {
-            return false;
-          }
+    //       if (!isValidDateString) {
+    //         return false;
+    //       }
 
-          return true;
-        };
+    //       return true;
+    //     };
 
-        if (isValidDate($(this).val())) {
-          enableAdvancedSearch();
-        } else {
-          $(this).closest(".input-group").addClass("has-error");
-          disableAdvancedSearch();
-        }
-      });
-    }
+    //     console.log('$(this).val()::', $(this).val());
+    //     console.log('isValidDate($(this).val())::', isValidDate($(this).val()));
+
+    //     if (isValidDate($(this).val())) {
+    //       enableAdvancedSearch();
+    //     } else {
+    //       $(this).closest(".input-group").addClass("has-error");
+    //       disableAdvancedSearch();
+    //     }
+    //   });
+    // }
 
     $(document).trigger("initadvancedsearchrow.aspace", [field_data, $row]);
     $(document).trigger("initdatefields.aspace", [$row]);
