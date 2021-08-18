@@ -40,7 +40,7 @@ class AdvancedQueryString
 
   def value
     if date?
-      date_string = @query["value"].split('-').concat(["01", "01"]).take(3).join("-")
+      date_string = JSONModel::Validations.normalise_date(@query["value"])
       base_time = Time.parse(date_string).utc.iso8601
 
       if @query["comparator"] == "lesser_than"
