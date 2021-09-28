@@ -71,3 +71,7 @@ Capybara.register_server :mizuno do |app, port, host|
 end
 Capybara.server = :mizuno
 Capybara.default_max_wait_time = 5
+
+
+ActionController::Base.logger.level = Logger::ERROR
+Rails.logger.level = Logger::ERROR
