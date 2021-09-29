@@ -8,22 +8,8 @@ describe 'Accessibility', js: true, db: 'accessibility' do
   end
 
   before(:each) do
-    visit '/'
-    if page.has_xpath? "//input[@id='login']"
-
-      within "form.login" do
-        fill_in "username", with: "admin"
-        fill_in "password", with: "admin"
-
-        click_button "Sign In"
-      end
-    end
-
-    page.has_no_xpath? "//input[@id='login']"
-  end
-
-  after(:each) do
-    page.instance_variable_set(:@touched, false)
+    login_admin
+    sleep 2 #to avoid eclipse buffer errors when browser dumps
   end
 
   it 'sets the selected state on sidebar elements' do
@@ -126,7 +112,6 @@ describe 'Accessibility', js: true, db: 'accessibility' do
         expect(page).not_to have_xpath("*//div[starts-with(@id,'popover')]")
         repo = find "span.repository-label"
         repo.send_keys ''
-
         expect(page).to have_xpath("*//div[starts-with(@id,'popover')]")
 
         repo.send_keys :escape
@@ -188,15 +173,12 @@ describe 'Accessibility', js: true, db: 'accessibility' do
     end
 
     # 519346
-    it "conveys purpose of the control through programmatic label" do
-      visit "/resources/1#tree::resource_1"
-      # tbd / not sure what to do (if anything?)
-    end
+    # it "conveys purpose of the control through programmatic label" do
+    # end
 
     # 519349
-    it "has acceptable color contrast in dropdowns" do
-      # tbd
-    end
+    # it "has acceptable color contrast in dropdowns" do
+    # end
 
     # 519350
     # see https://www.w3.org/TR/wai-aria-1.1/#combobox
