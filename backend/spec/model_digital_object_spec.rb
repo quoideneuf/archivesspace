@@ -121,6 +121,74 @@ describe 'Digital object model' do
     }.to raise_error(Sequel::ValidationFailed)
   end
 
+  it "has a representative_file_version read-only value of the file_version marked 'is_representative' if there is a file_version marked 'is_representative'" do
+    json = build(:json_digital_object, {
+                   :publish => true,
+                   :file_versions => [build(:json_file_version, {
+                                              :publish => true,
+                                              :is_representative => true,
+                                              :file_uri => 'http://foo.com/bar1',
+                                              :use_statement => 'image-service'
+                                            }),
+                                      build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar2',
+                                              :use_statement => 'image-service'
+                                            })
+                                     ]})
+
+    expect(json.representative_file_version).to eq(json.file_versions[0])
+    # TODO: test `json.representative_file_version` for readonly
+  end
+
+  it "has a representative_file_version read-only value of the first file_version with a use-statement marked 'image-thumbnail' if there is no file_version marked 'is_representative'" do
+    json = build(:json_digital_object, {
+                   :publish => true,
+                   :file_versions => [build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar1',
+                                              :use_statement => 'image-service'
+                                            }),
+                                      build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar2',
+                                              :use_statement => 'image-thumbnail'
+                                            }),
+                                      build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar3',
+                                              :use_statement => 'image-thumbnail'
+                                            })
+                                     ]})
+
+    expect(json.representative_file_version).to eq(json.file_versions[1])
+    # TODO: test `json.representative_file_version` for readonly
+  end
+
+  it "has a representative_file_version read-only value of the first published file_version if there is no file_version marked 'is_representative' and there is no published file_version with a use-statement marked 'image-thumbnail'" do
+    json = build(:json_digital_object, {
+                   :publish => true,
+                   :file_versions => [build(:json_file_version, {
+                                              :file_uri => 'http://foo.com/bar1',
+                                              :use_statement => 'image-service'
+                                            }),
+                                      build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar2',
+                                              :use_statement => 'image-service'
+                                            }),
+                                      build(:json_file_version, {
+                                              :file_uri => 'http://foo.com/bar3',
+                                              :use_statement => 'image-thumbnail'
+                                            })
+                                     ]})
+
+    expect(json.representative_file_version).to eq(json.file_versions[1])
+    # TODO: test `json.representative_file_version` for readonly
+  end
+
+  #TODO: Add test for the transitive requirement 4
+
   it "supports optional captions for file versions" do
     obj = create(:json_digital_object, {
                    :publish => true,
