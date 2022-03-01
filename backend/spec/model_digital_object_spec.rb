@@ -114,7 +114,25 @@ describe 'Digital object model' do
     expect {
       DigitalObject.create_from_json(json)
     }.to raise_error(Sequel::ValidationFailed)
-    # TODO: Write validation
+
+    json = build(:json_digital_object, {
+                   :publish => true,
+                   :file_versions => [build(:json_file_version, {
+                                              :publish => true,
+                                              :is_representative => true,
+                                              :file_uri => 'http://foo.com/bar1',
+                                              :use_statement => 'image-service'
+                                            }),
+                                      build(:json_file_version, {
+                                              :publish => true,
+                                              :file_uri => 'http://foo.com/bar2',
+                                              :use_statement => 'image-service'
+                                            })
+                                     ]})
+
+    expect {
+      DigitalObject.create_from_json(json)
+    }.not_to raise_error
   end
 
   it "has a representative_file_version read-only value of the file_version marked 'is_representative' if there is a file_version marked 'is_representative'" do
@@ -137,7 +155,6 @@ describe 'Digital object model' do
     do1_json = DigitalObject.to_jsonmodel(do1.id)
 
     expect(do1_json.representative_file_version).to eq(do1_json.file_versions[0])
-    # TODO: test `json.representative_file_version` for readonly
     # TODO: write representative_file_version logic
   end
 
@@ -165,7 +182,6 @@ describe 'Digital object model' do
     do1_json = DigitalObject.to_jsonmodel(do1.id)
 
     expect(do1_json.representative_file_version).to eq(do1_json.file_versions[1])
-    # TODO: test `json.representative_file_version` for readonly
     # TODO: write representative_file_version logic
   end
 
@@ -191,7 +207,6 @@ describe 'Digital object model' do
     do1_json = DigitalObject.to_jsonmodel(do1.id)
 
     expect(do1_json.representative_file_version).to eq(do1_json.file_versions[1])
-    # TODO: test `json.representative_file_version` for readonly
     # TODO: write representative_file_version logic
   end
 
