@@ -125,7 +125,8 @@ class LargeTree
       response = waypoint_response(child_count).merge("title" => node_record.display_string,
                                                       "uri" => node_record.uri,
                                                       "position" => node_position,
-                                                      "jsonmodel_type" => @node_table.to_s)
+                                                      "jsonmodel_type" => @node_table.to_s,
+                                                      "suppressed" => node_record.suppressed)
 
       @decorators.each do |decorator|
         response = decorator.node(response, node_record)
