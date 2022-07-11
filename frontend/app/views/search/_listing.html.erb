@@ -32,6 +32,14 @@
   </table>
 
   <%= render_aspace_partial :partial => "shared/pagination" %>
+  <section>
+    <code><pre><%= @search_data['results'] %></pre></code>
+    <ul>
+      <% @search_data['results'].each do |result| %>
+        <li>this record is suppressed: <%= result['suppressed'] %></li>
+      <% end %>
+    </ul>
+  </section>
 <% else %>
   <p class="alert alert-info">
     <%= I18n.t("search_results.no_results") %>
