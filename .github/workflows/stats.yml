@@ -2,6 +2,9 @@ name: Stats
 on:
   schedule:
     - cron: "1/5 * * * *"
+  push:
+    branches:
+      - 'api-documentation-refactor-plus-stats'
 
 jobs:
   append:
