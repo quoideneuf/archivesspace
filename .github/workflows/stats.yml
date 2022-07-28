@@ -13,24 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Foo
-        run: echo "FOOO123"
-      # - name: Setup Java
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     distribution: 'temurin'
-      #     java-version: '11'
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
 
-      # - name: Get download stats and append
-      #   run: ./build/run thor -Dtask="stats:download"
+      - name: Get download stats and append
+        run: ./build/run thor -Dtask="stats:download"
 
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.name "quoideneuf"
-      #     git add ./track-release-downloads.csv
-      #     git commit -m "Updating the download stats"
+      - name: Commit files
+        run: |
+          git config --local user.name "quoideneuf"
+          git add ./track-release-downloads.csv
+          git commit -m "Updating the download stats"
 
-      # - name: Push changes # push the output folder to your repo
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.API_TOKEN }}
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.API_TOKEN }}
