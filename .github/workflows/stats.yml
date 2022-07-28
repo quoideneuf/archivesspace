@@ -20,7 +20,8 @@ jobs:
           java-version: '11'
 
       - name: Get download stats and append
-        run: ./build/run thor -Dtask="stats:download"
+        run: |
+          ./build/run thor -Dtask="stats:download"
 
       - name: Commit files
         run: |
