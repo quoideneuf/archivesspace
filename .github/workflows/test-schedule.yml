@@ -1,0 +1,11 @@
+name: Stats
+on:
+  schedule:
+    - cron: '5/5 * * * *'
+
+jobs:
+  testit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Foo
+        run: echo "FOO"
