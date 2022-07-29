@@ -1,5 +1,6 @@
 require 'bundler'
 Bundler.require
+require 'csv'
 
 def gh_client(token)
   # see http://piotrmurach.github.io/github/
