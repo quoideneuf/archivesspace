@@ -1,7 +1,6 @@
 require 'bundler'
 Bundler.require
-require 'csv'
-require 'pry'
+
 def gh_client(token)
   # see http://piotrmurach.github.io/github/
   github = Github.new do |config|

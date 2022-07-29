@@ -25,11 +25,11 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.name "quoideneuf"
+          git config --local user.name "archivesspace"
           git add ./track-release-downloads.csv
           git commit -m "Updating the download stats"
 
-      - name: Push changes # push the output folder to your repo
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.API_TOKEN }}
