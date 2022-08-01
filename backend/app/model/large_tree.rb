@@ -241,7 +241,7 @@ class LargeTree
                 :parent_id => parent_id)
         .filter(published_filter)
         .order(:position)
-        .select(:id, :repo_id, :title, :position, :slug)
+        .select(:id, :repo_id, :title, :position, :slug, :suppressed)
         .offset(offset * WAYPOINT_SIZE)
         .limit(WAYPOINT_SIZE)
         .each do |row|
@@ -268,6 +268,7 @@ class LargeTree
                                              "uri" => JSONModel(@node_type).uri_for(row[:id], :repo_id => row[:repo_id]),
                                              "position" => (offset * WAYPOINT_SIZE) + idx,
                                              "parent_id" => parent_id,
+                                             "suppressed" => row[:suppressed],
                                              "jsonmodel_type" => @node_type.to_s)
 
       end
