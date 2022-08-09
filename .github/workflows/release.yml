@@ -7,7 +7,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build ArchivesSpace Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            file_ext: zip
+          - os: windows-latest
+            file_ext: windows.zip
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,9 +38,9 @@ jobs:
       - name: Build Dist
         run: ./build/run build-dist -Dversion=${{ steps.version.outputs.VERSION }}
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload Binaries to Release
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: ${{ steps.release_name.outputs.RELEASE_NAME }}
+          release_name: ${{ steps.release_name.outputs.RELEASE_NAME }}
           body: Insert release notes here
-          files: archivesspace-${{ steps.version.outputs.VERSION }}.zip
+          file: archivesspace-${{ steps.version.outputs.VERSION }}.${{ matrix.file_ext }}
