@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 8, 11 ]
+        java: [ 8 ]
 
     services:
       db:
@@ -48,11 +48,17 @@ jobs:
       run: |
         mysql --host 127.0.0.1 --port $DB_PORT -uroot -proot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
 
+    - name: Debug
+      env:
+        SOLR_ID: ${{ job.services.solr.id }}
+      run: |
+        docker exec --tty $SOLR_ID ls /
+
     - name: Create ArchivesSpace Solr core
       env:
         SOLR_ID: ${{ job.services.solr.id }}
       run: |
-        docker exec --tty $SOLR_ID solr create_core -p 8983 -c archivesspace -d /solr_conf_from_repo
+        docker exec --tty $SOLR_ID solr create_core -p 8983 -c archivesspace -d /archivesspace_repo/solr
 
     - name: Bootstrap ArchivesSpace
       run: |
