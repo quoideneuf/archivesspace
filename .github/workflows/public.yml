@@ -52,13 +52,19 @@ jobs:
       env:
         SOLR_ID: ${{ job.services.solr.id }}
       run: |
-        docker exec --tty $SOLR_ID ls /archivesspace_repo
+        docker cp solr $SOLR_ID:/solr_conf_from_repo
+
+    - name: Debug 2
+      env:
+        SOLR_ID: ${{ job.services.solr.id }}
+      run: |
+        docker exec --tty $SOLR_ID ls /solr_conf_from_repo
 
     - name: Create ArchivesSpace Solr core
       env:
         SOLR_ID: ${{ job.services.solr.id }}
       run: |
-        docker exec --tty $SOLR_ID solr create_core -p 8983 -c archivesspace -d /archivesspace_repo/archivesspace/solr
+        docker exec --tty $SOLR_ID solr create_core -p 8983 -c archivesspace -d /solr_conf_from_repo
 
     - name: Bootstrap ArchivesSpace
       run: |
