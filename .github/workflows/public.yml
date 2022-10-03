@@ -34,7 +34,7 @@ jobs:
         ports:
           - 8984:8983
         volumes:
-          - /archivesspace/solr:/solr_conf_from_repo
+          - /:/archivesspace_repo
 
     steps:
     - uses: actions/checkout@v2
