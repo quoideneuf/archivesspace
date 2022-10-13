@@ -81,7 +81,7 @@ describe 'Subjects' do
     end.not_to raise_error
   end
 
-  it 'can reorder the terms and have them maintain order', :skip => "UPGRADE skipping for green CI - when this is unskipped it causes 2 other specs in this file to fail" do
+  it 'can reorder the terms and have them maintain order' do
     first = "first_#{SecureRandom.hex}"
     second = "second_#{SecureRandom.hex}"
 
@@ -98,7 +98,8 @@ describe 'Subjects' do
     @driver.clear_and_send_keys([:id, 'subject_terms__1__term_'], second)
     @driver.find_element(id: 'subject_terms__0__term_type_').select_option('cultural_context')
     @driver.find_element(id: 'subject_terms__1__term_type_').select_option('cultural_context')
-    @driver.click_and_wait_until_gone(css: "form .content-pane button[type='submit']")
+
+    @driver.click_and_wait_until_gone(css: "form .col-md-9 button[type='submit']")
     assert(5) { expect(@driver.find_element(css: '.record-pane h2').text).to eq("#{first} -- #{second} Subject") }
 
     # drag to become sibling of parent
@@ -139,7 +140,7 @@ describe 'Subjects' do
     expect(@driver.find_element(:id, 'subject_terms__0__term_').attribute('value')).to eq('')
   end
 
-  it 'can export a csv of browse list Subjects', :skip => "UPGRADE skipping for green CI" do
+  it 'can export a csv of browse list Subjects' do
     run_all_indexers
 
     @driver.find_element(link: 'Browse').click
