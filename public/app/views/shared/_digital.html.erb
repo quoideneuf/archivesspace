@@ -1,8 +1,8 @@
-<% if rep_fv.present? %>
+<% if @result.has_representative_image? %>
 <div class="available-digital-objects">
   <div class="objectimage">
     <div class="panel panel-default">
-      <%= render partial: 'shared/representative_file_version', locals: {:uri => rep_fv['file_uri'], :caption => rep_fv['caption']} %>
+      <%= render partial: 'shared/representative_file_version', locals: {:uri => @result.representative_image_uri, :caption => @result.representative_image_caption} %>
     </div>
   </div>
 </div>

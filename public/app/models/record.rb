@@ -90,6 +90,20 @@ class Record
     return process_mixed_content(json['display_string'] || json['title'], :preserve_newlines => true)
   end
 
+  def has_representative_image?
+    json['representative_file_version'] &&
+      ['image-thumbnail', 'image-service'].include?(json['representative_file_version']['use_statement']) &&
+      !representative_image_uri.nil?
+  end
+
+  def representative_image_uri
+    json['representative_file_version']['file_uri']
+  end
+
+  def representative_image_caption
+    json['representative_file_version']['caption']
+  end
+
   private
 
   def parse_identifier
