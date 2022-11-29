@@ -1,7 +1,10 @@
 name: Stats
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 5 1 * *"
+  push:
+    branches:
+      - 'fetches-download-stats-on-push'
 
 jobs:
   append:
