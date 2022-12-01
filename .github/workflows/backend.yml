@@ -7,6 +7,10 @@ on:
       - 'backend/**'
       - 'common/**'
       - 'oai/**'
+  push:
+    branches:
+      - '_runs-backend-tests-on-push'
+      - '_runs-all-tests-on-push'
 
 jobs:
   backend:
