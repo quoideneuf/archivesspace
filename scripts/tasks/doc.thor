@@ -1,5 +1,5 @@
 require 'bundler'
-Bundler.require
+Bundler.require(:release_notes)
 require_relative 'release_notes'
 
 def gh_client(token)
@@ -28,13 +28,17 @@ class Doc < Thor
   desc "release_notes", "generate release notes"
   option :token, :required => true
   option :current_tag, :required => true
-  option :previous_tag, :required => true
-  option :out, :required => true
+  option :previous_tag, :required => false
+  option :out, :required => false
   option :max_pr_pages, :required => false, :default => 20, type: :numeric
   def release_notes
     old_version_tag = options[:previous_tag]
     new_version_tag = options[:current_tag]
-    out = File.open(File.join(Dir.pwd, '/', options[:out]), 'w')
+    out = if options[:out]
+            File.open(File.join(Dir.pwd, '/', options[:out]), 'w')
+          else
+            $stderr
+          end
     github = gh_client(options[:token])
     git = Git.open('./')
     log = git.log('a').between(old_version_tag, new_version_tag).map do |log_entry|

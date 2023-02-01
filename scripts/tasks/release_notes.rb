@@ -18,9 +18,9 @@ module ReleaseNotes
       @doc = []
       @log = log
       @messages = []
-      @previous_tag = previous_tag
-      @style = style
       @current_tag = current_tag
+      @previous_tag = previous_tag || find_previous_tag(current_tag)
+      @style = style
       @diff = Git.open('.').gtree("#{@previous_tag}").diff("#{@current_tag}")
       @migrations = OpenStruct.new
       all_changes = @diff.path('common/db/migrations').name_status
@@ -50,6 +50,17 @@ module ReleaseNotes
     end
 
     private
+
+    def find_previous_tag(current_tag)
+      current_tag = current_tag.sub(/-RC\d+$/, '')
+      git = Git.open('./')
+      vtags = git.tags.reject {|t| t.name !~ /^v\d\.\d\.\d$/}
+      matched = false
+      vtags.sort_by {|v| v.name}.map {|v| v.name}.reverse.each do |tag|
+        return tag if matched
+        matched = (tag == current_tag)
+      end
+    end
 
     def add_jira_id(data)
       if (data[:desc].match(/(ANW-\d+)/) || data[:pr_title]&.match(/(ANW-\d+)/))
