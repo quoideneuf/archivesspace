@@ -26,11 +26,12 @@ jobs:
         id: release_metadata
         run: |
           VERSION=$(echo $GITHUB_REF | cut -d / -f 3)
+          echo $VERSION
+          ./build/run doc:release_notes -Dcurrent_tag=$VERSION -Doutfile=RELEASE_NOTES.md
+          cat RELEASE_NOTES.md
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "RELEASE_NAME=$(echo $VERSION | sed 's/v/V/')" >> $GITHUB_OUTPUT
           echo "RELEASE_NOTES=FOOBAR" >> $GITHUB_OUTPUT
-          RESULT=$(./build/run doc:release_notes -Dcurrent_tag=$VERSION)
-          echo $RESULT
 
       - name: Build Dist
         #run: ./build/run build-dist -Dversion=${{ steps.version.outputs.VERSION }}
