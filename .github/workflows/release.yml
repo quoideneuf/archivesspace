@@ -26,10 +26,12 @@ jobs:
         id: release_metadata
         run: |
           VERSION=$(echo $GITHUB_REF | cut -d / -f 3)
-          echo "VERSION=$VERSION >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "RELEASE_NAME=$(echo $VERSION | sed 's/v/V/')" >> $GITHUB_OUTPUT
           echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
-          ./build/run doc:release_notes -Dcurrent_tag=$VERSION >> $GITHUB_OUTPUT
+          RESULT=$(./build/run doc:release_notes -Dcurrent_tag=$VERSION)
+          echo $RESULT
+          echo $RESULT >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Build Dist
