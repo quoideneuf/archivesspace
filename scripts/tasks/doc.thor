@@ -75,6 +75,7 @@ class Doc < Thor
       style: "brief"
     )
     out << generator.process.to_s
+    out << "\n"
     out.close
   end
 end
