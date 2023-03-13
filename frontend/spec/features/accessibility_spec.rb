@@ -128,7 +128,8 @@ describe 'Accessibility', js: true, db: 'accessibility' do
 
         # Expand advanced search and tab into it
         switcher.click
-        switcher.send_keys :tab
+        last_button_in_navbar = find "a.context-help"
+        last_button_in_navbar.send_keys :tab
 
         expect(page.evaluate_script("document.activeElement.classList[0]")).to include("advanced-search-row-op-input")
       end

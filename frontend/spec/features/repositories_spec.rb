@@ -111,7 +111,7 @@ describe 'Repositories', js: true do
     click_button('Add Contact')
     field = find('#agent_corporate_entity_contact_details li:last-child input[id$="__name_"]')
     field.fill_in(with: 'This is not the contact you are looking for')
-    click_button('Save')
+    find('button', exact_text: "Save").click
     expect(page).to have_content('Agent Saved')
     visit(@repo2.uri)
     expect(page).not_to have_content('This is not the contact you are looking for')

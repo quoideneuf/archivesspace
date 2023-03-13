@@ -5,17 +5,9 @@ require 'rails_helper'
 
 describe 'Default Form Values', js: true do
   before(:all) do
-    @repo = create(:repo, repo_code: "default_values_test_#{Time.now.to_i}")
+    @repo = create(:repo, repo_code: "default_values_test_#{Time.now.to_i}", publish: true)
     @archivist_user = create_user(@repo => ['repository-archivists'])
-
-    login_admin
-
-    visit('/preferences/0/edit?global=true')
-    check('preference[defaults][default_values]')
-    click_button('Save')
-
-    expect(page).to have_checked_field('preference[defaults][default_values]')
-    expect(page).to have_content('Preferences updated')
+    set_repo(@repo)
   end
 
   before(:each) do
@@ -23,13 +15,20 @@ describe 'Default Form Values', js: true do
     select_repository(@repo)
   end
 
+  it 'will let an admin change default values' do
+    visit('/preferences/0/edit?global=true')
+    check('preference[defaults][default_values]')
+    click_button('Save')
+    expect(page).to have_checked_field('preference[defaults][default_values]')
+    expect(page).to have_content('Preferences updated')
+  end
+
   it 'will let an admin create default accession values' do
     visit '/accessions'
 
     click_link('Edit Default Values')
-    expect(page).to have_field('accession[title]')
-
-    fill_in('accession[title]', with: 'DEFAULT TITLE')
+    expect(page).to have_css("#accession_title_", visible: false)
+    execute_script("$('#accession_title_').data('CodeMirror').setValue('DEFAULT TITLE')")
     click_on('Save')
     expect(page).to have_content('Defaults Updated')
 
