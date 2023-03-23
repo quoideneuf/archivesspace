@@ -4,7 +4,7 @@ require 'rails_helper'
 describe 'Accessibility', js: true, db: 'accessibility' do
 
   before(:all) do
-    PeriodicIndexer.new.run_index_round
+    run_indexer
   end
 
   before(:each) do
@@ -152,13 +152,13 @@ describe 'Accessibility', js: true, db: 'accessibility' do
       page.has_css? "div.repository-header"
 
       within "div.repository-header" do
-        expect(page).not_to have_xpath("*//div[starts-with(@id,'popover')]")
+        expect(page).not_to have_xpath("*//span[starts-with(@aria-describedby,'popover')]")
         repo = find "span.repository-label"
         repo.send_keys ''
-        expect(page).to have_xpath("*//div[starts-with(@id,'popover')]")
+        expect(page).to have_xpath("*//span[starts-with(@aria-describedby,'popover')]")
 
         repo.send_keys :escape
-        expect(page).not_to have_xpath("*//div[starts-with(@id,'popover')]")
+        expect(page).not_to have_xpath("*//span[starts-with(@aria-describedby,'popover')]")
       end
     end
   end
