@@ -66,6 +66,18 @@ describe 'Representative File Version mixin' do
         expect(json.representative_file_version['file_uri']).to eq(file_version_2.file_uri)
       end
     end
+
+    # https://archivesspace.atlassian.net/browse/ANW-1721
+    it "has a read-only 'link_uri' for the following published sibling file_version of the representative file" do
+      file_version_2.is_representative = true
+      [DigitalObject, DigitalObjectComponent].each do |klass|
+        json = build(:"json_#{klass.name.underscore}", file_versions: [ file_version_1, file_version_2, file_version_3 ])
+        obj = klass.create_from_json(json)
+        json = klass.to_jsonmodel(obj)
+        expect(json.representative_file_version['file_uri']).to eq(file_version_2.file_uri)
+        expect(json.representative_file_version['link_uri']).to eq(file_version_3.file_uri)
+      end
+    end
   end
 
   describe "Resource, Accession, and Archival Object representative file version" do
