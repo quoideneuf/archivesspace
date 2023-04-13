@@ -78,6 +78,18 @@ describe 'Representative File Version mixin' do
         expect(json.representative_file_version['link_uri']).to eq(file_version_3.file_uri)
       end
     end
+
+    it "has no read-only 'link_uri' if the following file_version of the representative file is unpublished" do
+      file_version_2.is_representative = true
+      file_version_3.publish = false
+      [DigitalObject, DigitalObjectComponent].each do |klass|
+        json = build(:"json_#{klass.name.underscore}", file_versions: [ file_version_1, file_version_2, file_version_3, file_version_4 ])
+        obj = klass.create_from_json(json)
+        json = klass.to_jsonmodel(obj)
+        expect(json.representative_file_version['file_uri']).to eq(file_version_2.file_uri)
+        expect(json.representative_file_version['link_uri']).to be_nil
+      end
+    end
   end
 
   describe "Resource, Accession, and Archival Object representative file version" do

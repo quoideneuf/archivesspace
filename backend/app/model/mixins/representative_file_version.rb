@@ -76,11 +76,12 @@ module RepresentativeFileVersion
           fvs.each do |fv|
             # all done if:
             break if fv_pairs[0] && fv_pairs[0].size == 2
-            # ANW-1721
-            if (last_pair && fv["publish"])
+            # ANW-1721 - if the fv in last_pair ends up being selected, this will be its link target
+            if (last_pair && last_pair.size == 1)
               last_pair << fv
+            end
             # ANW-1209 REQ-3
-            elsif fv_pairs[0].nil? && fv["publish"] && fv["is_representative"]
+            if fv_pairs[0].nil? && fv["publish"] && fv["is_representative"]
               last_pair = fv_pairs[0] = [fv]
             # ANW-1209 REQ-3.1
             elsif fv_pairs[1].nil? && fv["publish"] && fv["use_statement"] == 'image-thumbnail'
@@ -93,9 +94,10 @@ module RepresentativeFileVersion
               last_pair = fv_pairs[2] = [fv]
             end
           end
+          # now we select the best candidate pair based on order
           if (fvp = fv_pairs.compact.first)
             json["representative_file_version"] = fvp[0]
-            if fvp[1]
+            if fvp[1] && fvp[1]["publish"]
               json["representative_file_version"]["link_uri"] = fvp[1]["file_uri"]
             end
           end
