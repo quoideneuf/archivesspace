@@ -21,7 +21,8 @@ describe 'Representative File Version mixin' do
       build(:json_file_version, {
               :publish => true,
               :file_uri => "http://foo.com/bar#{i}",
-              :use_statement => 'image-service'
+              :use_statement => 'image-service',
+              :xlink_show_attribute => "embed"
             })
     }
   }
@@ -223,6 +224,22 @@ describe 'Representative File Version mixin' do
                          })
 
       expect(accession.representative_file_version['file_uri']).to eq(file_version_1.file_uri)
+    end
+
+    it "has no read-only 'link_uri' since this field only matters in the context of a digital object record or component" do
+      do1 = create(:json_digital_object, { publish: true, file_versions: [file_version_1, file_version_2] })
+
+      [Resource, Accession, ArchivalObject].each do |klass|
+        obj = send("create_#{klass.name.underscore}", instances: [
+                     build(:json_instance_digital, {
+                             is_representative: true,
+                             digital_object: { ref: do1.uri }
+                           })])
+
+        json = klass.to_jsonmodel(obj.id)
+        expect(json.representative_file_version['file_uri']).to eq(file_version_1.file_uri)
+        expect(json.representative_file_version['link_uri']).to be_nil
+      end
     end
   end
 

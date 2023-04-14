@@ -47,7 +47,9 @@ module RepresentativeFileVersion
             id = JSONModel(:digital_object).id_for(representative_instance["digital_object"]["ref"])
             digital_object = DigitalObject.to_jsonmodel(id, opts)
             if digital_object["representative_file_version"]
-              json["representative_file_version"] = digital_object["representative_file_version"].merge("derived_from" => digital_object.uri)
+              json["representative_file_version"] = digital_object["representative_file_version"]
+                                                      .merge("derived_from" => digital_object.uri)
+                                                      .reject { |k, _| k == "link_uri" }
             else
               digital_object_component_set = DigitalObjectComponent
                                                .left_join(:file_version, digital_object_component_id: :digital_object_component__id)
