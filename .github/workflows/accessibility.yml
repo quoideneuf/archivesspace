@@ -6,6 +6,9 @@ on:
       - '.github/workflows/accessibility.yml'
       - 'public/**'
       - 'frontend/**'
+  push:
+    branches:
+      - '*___accessibility'
 
 jobs:
   accessibility:

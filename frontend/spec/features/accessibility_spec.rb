@@ -240,6 +240,7 @@ describe 'Accessibility', js: true, db: 'accessibility' do
     # # 519396
     it "sets role as none for ul element in transfer dropdown" do
       visit "/resources/1"
+      await_jquery
 
       within "#transfer-dropdown" do
         find("button.transfer-action").click
