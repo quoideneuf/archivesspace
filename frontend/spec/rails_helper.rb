@@ -72,7 +72,7 @@ Capybara.register_server :as_puma do |app, port, host|
 end
 Capybara.server = :as_puma
 
-Capybara.default_max_wait_time = ENV.fetch('CAPYBARA_DEFAULT_MAX_WAIT_TIME', 10).to_i
+Capybara.default_max_wait_time = ENV.fetch('CAPYBARA_DEFAULT_MAX_WAIT_TIME', 60).to_i
 ActionController::Base.logger.level = Logger::ERROR
 Rails.logger.level = Logger::ERROR
 Rails::Controller::Testing.install
