@@ -80,15 +80,18 @@ end
 
 Capybara::Node::Element.class_eval do
   alias_method :click_orig, :click
-
+  # click handlers seem to take their time on our free github
+  # runners, so we do this stuff. The JQuery checks seem insufficient,
+  # hence the sleep - we really need a better way to know the page and all its handlers
+  # are ready
   def click(*keys, **options)
     Timeout.timeout(Capybara.default_max_wait_time) do
-      sleep 1
+      sleep 5
       break if session.evaluate_script("typeof jQuery != 'undefined' && (jQuery.active === 0)")
     end
     click_orig(*keys, **options)
     Timeout.timeout(Capybara.default_max_wait_time) do
-      sleep 1
+      sleep 5
       break if session.evaluate_script("typeof jQuery != 'undefined' && (jQuery.active === 0)")
     end
   end

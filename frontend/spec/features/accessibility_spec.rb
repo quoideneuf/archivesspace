@@ -181,12 +181,14 @@ describe 'Accessibility', js: true, db: 'accessibility' do
         ["#add-event-dropdown button.add-event-action",
          "#merge-dropdown button.merge-action",
          "#transfer-dropdown button.transfer-action"].each do |css|
-          dropdown_ctrl = find(css)
-          expect(dropdown_ctrl).to have_xpath("self::*[@aria-expanded='false']")
-          dropdown_ctrl.click
-          expect(dropdown_ctrl).to have_xpath("self::*[@aria-expanded='true']")
-          dropdown_ctrl.click
-          expect(dropdown_ctrl).to have_xpath("self::*[@aria-expanded='false']")
+          eval("expect(page).to have_css(\"#{css}[aria-expanded='false']\")")
+          sleep(1)
+          find(css).click
+          find("#{css}[aria-expanded='true']")
+          eval("expect(page).to have_css(\"#{css}[aria-expanded='true']\")")
+          find(css).click
+          find("#{css}[aria-expanded='false']")
+          eval("expect(page).to have_css(\"#{css}[aria-expanded='false']\")")
         end
 
         # #merge-dropdown a.dropdown-toggle is inside the merge menu, so we need to drop that down first so the target element is visible
