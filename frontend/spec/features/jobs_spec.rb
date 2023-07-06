@@ -5,7 +5,6 @@ require 'rails_helper'
 
 describe 'Jobs', js: true do
   before(:all) do
-    login_admin
     @repo = create(:repo, repo_code: "jobs_test_#{Time.now.to_i}", publish: true)
     set_repo(@repo)
   end
@@ -18,7 +17,7 @@ describe 'Jobs', js: true do
   it 'can create a find and replace job' do
     resource = create(:resource)
 
-    run_index_round
+    run_indexer
 
     sleep 5.seconds
 
@@ -44,7 +43,7 @@ describe 'Jobs', js: true do
   it 'can create a print to pdf job' do
     resource = create(:resource)
 
-    run_index_round
+    run_indexer
 
     click_link('Repository settings')
     click_link('Background Jobs')
@@ -98,7 +97,7 @@ describe 'Jobs', js: true do
     expect(page).to have_content('Completed')
 
     # don't forget to index or it won't show up!
-    run_index_round
+    run_indexer
     click_link('Background Jobs')
 
     expect(find(id: 'tabledSearchResults')).to have_content('Accession Report')
@@ -115,8 +114,10 @@ describe 'Jobs', js: true do
       click_link('Import Data')
     end
 
-    # can this be done without calling the javascript directly?
-    execute_script("return $('#job_filenames_ > span > input')[0]").send_keys(template_file)
+    attach_file(template_file) do
+      find('.fileinput-button').click
+    end
+
     click_button('Start Job')
     wait_for_job_to_complete(page)
     expect(page).to have_content('Import Job')
