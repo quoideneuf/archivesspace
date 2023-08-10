@@ -25,14 +25,17 @@ describe 'DatepickerPlugin', js: true do
 
   it 'accepts a pasted year date in yyyy format' do
     execute_script("navigator.clipboard.writeText('1999').catch(err => err);")
-
-    @date_field.click
-    if page.driver.browser.capabilities.platform =~ /^mac/
-      @date_field.send_keys([:command, 'v'])
-    else
-      @date_field.send_keys([:control, 'v'])
+    #@date_field.click
+    expect(page.evaluate_script("document.activeElement.id")).to eq "v1"
+    5.times do
+      if page.driver.browser.capabilities.platform =~ /^mac/
+        @date_field.send_keys([:command, 'v'])
+      else
+        @date_field.send_keys([:control, 'v'])
+      end
+      sleep 1
+      break if find("#v1").value = "1999"
     end
-
     expect(page).to have_css('body > .datepicker > .datepicker-years', visible: true)
   end
 
