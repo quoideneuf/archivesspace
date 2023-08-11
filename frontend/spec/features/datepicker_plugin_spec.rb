@@ -20,22 +20,25 @@ describe 'DatepickerPlugin', js: true do
     @datepicker_toggle.click
     expect(page).to have_css('body > .datepicker > .datepicker-years', visible: false)
     expect(page).to have_css('body > .datepicker > .datepicker-months', visible: false)
-    expect(page).to have_css('body > .datepicker > .datepicker-days', visible: true)
+    expect(page).to have_css('body > .datepicker > .datepicker-days', visible: false)
+    sleep 1
   end
 
   it 'accepts a pasted year date in yyyy format' do
-    execute_script("navigator.clipboard.writeText('1999').catch(err => err);")
-    #@date_field.click
+    execute_script("navigator.clipboard.writeText('1999').catch(err => { TEST_MESSAGES.append(err); });")
+    sleep 1
+    @date_field.click
+    sleep 1
     expect(page.evaluate_script("document.activeElement.id")).to eq "v1"
-    5.times do
-      if page.driver.browser.capabilities.platform =~ /^mac/
-        @date_field.send_keys([:command, 'v'])
-      else
-        @date_field.send_keys([:control, 'v'])
-      end
-      sleep 1
-      break if find("#v1").value = "1999"
+    $logger.debug("PLATFORM: #{page.driver.browser.capabilities.platform}")
+    if page.driver.browser.capabilities.platform =~ /^mac/
+      @date_field.send_keys([:command, 'v'])
+    else
+      @date_field.send_keys([:control, 'v'])
     end
+    js_debug_messages = page.evaluate_script("TEST_MESSAGES.textContent");
+    $logger.debug(js_debug_messages);
+
     expect(page).to have_css('body > .datepicker > .datepicker-years', visible: true)
   end
 

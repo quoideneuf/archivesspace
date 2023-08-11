@@ -70,6 +70,8 @@ jobs:
         ARCHIVESSPACE_VERSION: ${{ github.ref }}
         CAPYBARA_DEFAULT_MAX_WAIT_TIME: 10
         RSPEC_RETRIES: 3
+        TEST_MODE: 1
+        FIREFOX_OPTS: 1
 
     # - name: Run deprecated tests
     #   run: |
